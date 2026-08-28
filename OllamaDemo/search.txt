@@ -1,0 +1,481 @@
+Today 8:13 PM
+D:\Data\Inayat Rehman\mCloud\python>py deep-seek.py
+  File "D:\Data\Inayat Rehman\mCloud\python\deep-seek.py", line 6
+    api_key="sk-4d09ac0210c94cc7ba477c8296c630db"
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+
+# Please install OpenAI SDK first: pip3 install openai
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="sk-4d09ac0210c94cc7ba477c8296c630db" 
+                # os.environ.get('DEEPSEEK_API_KEY'),
+    base_url="https://api.deepseek.com")
+
+response = client.chat.completions.create(
+    model="deepseek-v4-pro",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content": "Hello"},
+    ],
+    stream=False,
+    reasoning_effort="high",
+    extra_body={"thinking": {"type": "enabled"}}
+)
+
+print(response.choices[0].message.content)
+
+The error is exactly what Python says: you forgot a comma after the api_key argument.
+
+Your code currently has:
+
+client = OpenAI(
+    api_key="sk-4d09ac0210c94cc7ba477c8296c630db"
+                # os.environ.get('DEEPSEEK_API_KEY'),
+    base_url="https://api.deepseek.com")
+
+There is no comma after the API key string.
+
+It should be:
+
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="sk-4d09ac0210c94cc7ba477c8296c630db",
+    # api_key=os.environ.get("DEEPSEEK_API_KEY"),
+    base_url="https://api.deepseek.com"
+)
+However, there are a couple more issues
+1. Model name
+
+I don't believe
+
+model="deepseek-v4-pro"
+
+is a valid DeepSeek model name.
+
+Check the DeepSeek documentation for the exact model name. Common examples are:
+
+model="deepseek-chat"
+
+or
+
+model="deepseek-reasoner"
+
+depending on which API you have access to.
+
+2. reasoning_effort
+
+This parameter is not supported by all models.
+
+If you get an error like
+
+Unknown parameter: reasoning_effort
+
+remove it.
+
+3. thinking
+
+Likewise,
+
+extra_body={"thinking": {"type": "enabled"}}
+
+is only supported by certain reasoning models. If the API reports it as an unknown parameter, remove it.
+
+Start with the simplest working example
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="YOUR_DEEPSEEK_API_KEY",
+    base_url="https://api.deepseek.com"
+)
+
+response = client.chat.completions.create(
+    model="deepseek-chat",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content": "Hello"}
+    ]
+)
+
+print(response.choices[0].message.content)
+Check your SDK version
+
+Run:
+
+pip show openai
+
+or
+
+py -m pip show openai
+
+You should have a recent version (for example, 1.x or newer).
+
+Important security note
+
+You have posted your DeepSeek API key publicly in your message:
+
+sk-4d09ac0210c94cc7ba477c8296c630db
+
+Treat API keys like passwords. Since it has been exposed, you should:
+
+Log in to your DeepSeek account.
+Revoke or delete this API key.
+Generate a new API key.
+Store it in an environment variable instead of hardcoding it in your source code.
+
+If you continue to get errors after fixing the comma, please paste the complete error traceback, and also tell me:
+
+the output of py -m pip show openai
+your Python version (py --version)
+
+You can use a Stopwatch together with a background task that updates the elapsed time every second until the AI response is received.
+
+using System.Diagnostics;
+using OllamaDemo.Models;
+
+var client = new OllamaClient();
+
+Console.WriteLine("Sending request to Ollama...");
+
+var stopwatch = Stopwatch.StartNew();
+
+// Display elapsed time while waiting
+var timerTask = Task.Run(async () =>
+{
+    while (stopwatch.IsRunning)
+    {
+        Console.Write($"\rElapsed Time: {stopwatch.Elapsed:hh\\:mm\\:ss}");
+        await Task.Delay(1000);
+    }
+});
+
+OllamaResponse answer = await client.AskAsync(
+    "deepseek-r1:7b",
+    "Explain database normalization."
+);
+
+stopwatch.Stop();
+
+// Wait for timer task to exit
+await timerTask;
+
+// Clear the elapsed time line
+Console.Write("\r" + new string(' ', Console.WindowWidth - 1) + "\r");
+
+Console.WriteLine($"Completed in: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
+Console.WriteLine();
+
+Console.WriteLine("========== AI Response ==========");
+Console.WriteLine(answer.Response);
+Console.WriteLine("=================================");
+
+// Copy to clipboard (requires one of the clipboard methods discussed earlier)
+// Clipboard.SetText(answer.Response);
+
+Console.WriteLine();
+Console.WriteLine("Response copied to clipboard.");
+
+Console.WriteLine();
+Console.WriteLine("Press ENTER to exit...");
+Console.ReadLine();
+Sample output
+Sending request to Ollama...
+
+Elapsed Time: 00:00:01
+Elapsed Time: 00:00:02
+Elapsed Time: 00:00:03
+Elapsed Time: 00:00:04
+Elapsed Time: 00:00:05
+Elapsed Time: 00:00:06
+Elapsed Time: 00:00:07
+
+Completed in: 00:00:07.382
+
+========== AI Response ==========
+Database normalization is the process of organizing data...
+=================================
+
+Response copied to clipboard.
+
+Press ENTER to exit...
+
+This gives a live elapsed-time counter while the model is generating the response and prints the precise execution time once it finishes.
+
+make the following prmpt more readable. Don't remove variables just the prompt statment
+
+string SourceDatabase = "Microsoft SQL Server";
+string TargetDatabase = "PostgreSQL";
+string StarMSourceQuery = "SELECT TOP 10 * FROM Employees Order By EmployeeId\nGO";
+string StarMTargetQuery = "SELECT * FROM Employees LIMIT 10 ORDER BY EmployeeId;";
+string Directions = "Check the conversion ";
+
+OllamaResponse answer = await client.AskAsync(
+    "deepseek-r1:7b",
+    //"Explain database normalization."
+    $"{SourceDatabase} Query is: " + StarMSourceQuery + $"and {TargetDatabase} Query is: " + StarMTargetQuery +
+    "Check the correctness btween these Queries. Indicate the Issues where conversion not happened correctly."
+);
+
+You can make the prompt much more structured. LLMs generally produce better results when the instructions and inputs are clearly separated.
+
+string SourceDatabase = "Microsoft SQL Server";
+string TargetDatabase = "PostgreSQL";
+string StarMSourceQuery = "SELECT TOP 10 * FROM Employees Order By EmployeeId\nGO";
+string StarMTargetQuery = "SELECT * FROM Employees LIMIT 10 ORDER BY EmployeeId;";
+string Directions = "Check the conversion.";
+
+OllamaResponse answer = await client.AskAsync(
+    "deepseek-r1:7b",
+    $@"
+You are an expert database migration specialist.
+
+Task:
+{Directions}
+
+Source Database:
+{SourceDatabase}
+
+Target Database:
+{TargetDatabase}
+
+Source Query:
+{StarMSourceQuery}
+
+Converted Query:
+{StarMTargetQuery}
+
+Instructions:
+1. Compare the source and converted queries.
+2. Verify that the converted query is syntactically correct for {TargetDatabase}.
+3. Verify that the converted query preserves the same functionality as the source query.
+4. Identify any missing, incorrect, or incompatible conversions.
+5. Explain each issue found.
+6. Provide the corrected {TargetDatabase} query if any issues exist.
+7. If the conversion is correct, explicitly state that no issues were found.
+
+Return your response in the following format:
+
+Overall Status:
+<Correct / Incorrect>
+
+Issues:
+- ...
+
+Corrected Query:
+...
+");
+
+This prompt is:
+
+Much more readable for both humans and the model.
+Clearly separates Source Database, Target Database, Source Query, and Converted Query.
+Gives the model explicit instructions.
+Requests a consistent output format, making it easier to parse programmatically in your Star*M tool.
+write a compleicated SQL Server query with various functions used, joins and clauses. also convert it to Pg
+
+Below is a realistic SQL Server query that includes many commonly used features in migration projects:
+
+Multiple INNER and LEFT JOINs
+Common Table Expression (CTE)
+ROW_NUMBER()
+CASE
+ISNULL()
+CONCAT()
+GETDATE()
+DATEADD()
+DATEDIFF()
+CAST()
+TOP
+LIKE
+EXISTS
+GROUP BY
+HAVING
+ORDER BY
+SQL Server Query
+WITH EmployeeSales AS
+(
+    SELECT
+        e.EmployeeID,
+        e.FirstName,
+        e.LastName,
+        e.DepartmentID,
+        d.DepartmentName,
+        COUNT(o.OrderID) AS TotalOrders,
+        SUM(od.Quantity * od.UnitPrice) AS TotalSales,
+        AVG(od.UnitPrice) AS AvgUnitPrice,
+        MIN(o.OrderDate) AS FirstOrderDate,
+        MAX(o.OrderDate) AS LastOrderDate
+    FROM Employees e
+        INNER JOIN Departments d
+            ON e.DepartmentID = d.DepartmentID
+        LEFT JOIN Orders o
+            ON e.EmployeeID = o.EmployeeID
+        LEFT JOIN OrderDetails od
+            ON o.OrderID = od.OrderID
+    WHERE
+        o.OrderDate >= DATEADD(YEAR, -1, GETDATE())
+    GROUP BY
+        e.EmployeeID,
+        e.FirstName,
+        e.LastName,
+        e.DepartmentID,
+        d.DepartmentName
+    HAVING
+        SUM(od.Quantity * od.UnitPrice) > 5000
+)
+
+SELECT TOP (20)
+
+    ROW_NUMBER() OVER
+    (
+        ORDER BY es.TotalSales DESC
+    ) AS RowNo,
+
+    es.EmployeeID,
+
+    CONCAT(es.FirstName,' ',es.LastName) AS EmployeeName,
+
+    es.DepartmentName,
+
+    ISNULL(es.TotalOrders,0) AS TotalOrders,
+
+    CAST(es.TotalSales AS DECIMAL(18,2)) AS TotalSales,
+
+    CASE
+        WHEN es.TotalSales >= 50000 THEN 'Platinum'
+        WHEN es.TotalSales >= 25000 THEN 'Gold'
+        WHEN es.TotalSales >= 10000 THEN 'Silver'
+        ELSE 'Bronze'
+    END AS SalesCategory,
+
+    DATEDIFF(DAY,
+             es.LastOrderDate,
+             GETDATE()) AS DaysSinceLastOrder,
+
+    m.FirstName + ' ' + m.LastName AS ManagerName
+
+FROM EmployeeSales es
+
+INNER JOIN Employees e
+    ON es.EmployeeID = e.EmployeeID
+
+LEFT JOIN Employees m
+    ON e.ManagerID = m.EmployeeID
+
+WHERE
+
+    es.DepartmentName LIKE 'S%'
+
+    AND EXISTS
+    (
+        SELECT 1
+        FROM Bonuses b
+        WHERE b.EmployeeID = es.EmployeeID
+        AND b.BonusYear = YEAR(GETDATE())
+    )
+
+ORDER BY
+    TotalSales DESC,
+    EmployeeName;
+PostgreSQL Version
+WITH EmployeeSales AS
+(
+    SELECT
+        e.EmployeeID,
+        e.FirstName,
+        e.LastName,
+        e.DepartmentID,
+        d.DepartmentName,
+        COUNT(o.OrderID) AS TotalOrders,
+        SUM(od.Quantity * od.UnitPrice) AS TotalSales,
+        AVG(od.UnitPrice) AS AvgUnitPrice,
+        MIN(o.OrderDate) AS FirstOrderDate,
+        MAX(o.OrderDate) AS LastOrderDate
+    FROM Employees e
+        INNER JOIN Departments d
+            ON e.DepartmentID = d.DepartmentID
+        LEFT JOIN Orders o
+            ON e.EmployeeID = o.EmployeeID
+        LEFT JOIN OrderDetails od
+            ON o.OrderID = od.OrderID
+    WHERE
+        o.OrderDate >= CURRENT_TIMESTAMP - INTERVAL '1 year'
+    GROUP BY
+        e.EmployeeID,
+        e.FirstName,
+        e.LastName,
+        e.DepartmentID,
+        d.DepartmentName
+    HAVING
+        SUM(od.Quantity * od.UnitPrice) > 5000
+)
+
+SELECT
+
+    ROW_NUMBER() OVER
+    (
+        ORDER BY es.TotalSales DESC
+    ) AS RowNo,
+
+    es.EmployeeID,
+
+    CONCAT(es.FirstName,' ',es.LastName) AS EmployeeName,
+
+    es.DepartmentName,
+
+    COALESCE(es.TotalOrders,0) AS TotalOrders,
+
+    CAST(es.TotalSales AS DECIMAL(18,2)) AS TotalSales,
+
+    CASE
+        WHEN es.TotalSales >= 50000 THEN 'Platinum'
+        WHEN es.TotalSales >= 25000 THEN 'Gold'
+        WHEN es.TotalSales >= 10000 THEN 'Silver'
+        ELSE 'Bronze'
+    END AS SalesCategory,
+
+    EXTRACT(DAY FROM (CURRENT_TIMESTAMP - es.LastOrderDate)) AS DaysSinceLastOrder,
+
+    CONCAT(m.FirstName,' ',m.LastName) AS ManagerName
+
+FROM EmployeeSales es
+
+INNER JOIN Employees e
+    ON es.EmployeeID = e.EmployeeID
+
+LEFT JOIN Employees m
+    ON e.ManagerID = m.EmployeeID
+
+WHERE
+
+    es.DepartmentName LIKE 'S%'
+
+    AND EXISTS
+    (
+        SELECT 1
+        FROM Bonuses b
+        WHERE b.EmployeeID = es.EmployeeID
+        AND b.BonusYear = EXTRACT(YEAR FROM CURRENT_TIMESTAMP)
+    )
+
+ORDER BY
+    TotalSales DESC,
+    EmployeeName
+
+LIMIT 20;
+SQL Server → PostgreSQL Changes
+SQL Server	PostgreSQL
+TOP (20)	LIMIT 20
+GETDATE()	CURRENT_TIMESTAMP
+DATEADD(YEAR,-1,GETDATE())	CURRENT_TIMESTAMP - INTERVAL '1 year'
+DATEDIFF(DAY,a,b)	EXTRACT(DAY FROM (b - a)) (or DATE_PART('day', b - a))
+ISNULL()	COALESCE()
++ (string concatenation)	CONCAT() or `
+YEAR(GETDATE())	EXTRACT(YEAR FROM CURRENT_TIMESTAMP)
+TOP clause	LIMIT clause at the end
+CAST(... AS DECIMAL)	Same syntax
+
+This example exercises many of the function mappings and query constructs that are typically encountered in SQL Server to PostgreSQL migration projects, making it a good test case for validating your Star*M AI-assisted migration workflow.

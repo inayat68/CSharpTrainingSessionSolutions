@@ -1,0 +1,95 @@
+﻿@model CustomerManagementWebApp.Models.Order
+
+@{
+    ViewData["Title"] = "Edit Order";
+}
+
+<h1>Edit Order</h1>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden"
+           asp-for="OrderId" />
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger">
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="CustomerId"
+               class="form-label">
+            Customer
+        </label>
+
+        <select asp-for="CustomerId"
+                asp-items="ViewBag.Customers"
+                class="form-select">
+
+            <option value="">
+                -- Select Customer --
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="OrderDate"
+               class="form-label">
+        </label>
+
+        <input asp-for="OrderDate"
+               type="date"
+               class="form-control" />
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Product"
+               class="form-label">
+        </label>
+
+        <input asp-for="Product"
+               class="form-control" />
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Quantity"
+               class="form-label">
+        </label>
+
+        <input asp-for="Quantity"
+               type="number"
+               class="form-control" />
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Amount"
+               class="form-label">
+        </label>
+
+        <input asp-for="Amount"
+               type="number"
+               step="0.01"
+               class="form-control" />
+
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Update
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

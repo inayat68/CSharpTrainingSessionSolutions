@@ -1,0 +1,66 @@
+﻿@model List<CustomerManagementWebApp.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h1>Orders</h1>
+
+<p>
+    <a asp-action="Create"
+       class="btn btn-primary">
+        Add Order
+    </a>
+
+    <a asp-controller="Customers"
+       asp-action="Index"
+       class="btn btn-secondary">
+        Customers
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.CustomerName</td>
+                <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                <td>@order.Product</td>
+                <td>@order.Quantity</td>
+                <td>@order.Amount.ToString("N2")</td>
+
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@order.OrderId">
+                        Edit
+                    </a>
+
+                    |
+
+                    <a asp-action="Delete"
+                       asp-route-id="@order.OrderId">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

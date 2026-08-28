@@ -1,0 +1,630 @@
+----- Match 1 -----
+: CREATE_PROCEDURE_13152_126878.sql
+
+Unknown keyword to
+Line: 12
+Char: 63
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 2 -----
+: CREATE_PROCEDURE_13167_126956.sql
+
+Unknown keyword ON
+Line: 28
+Char: 4
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 3 -----
+: CREATE_PROCEDURE_18977_229123.sql
+
+Unknown keyword P1
+Line: 107
+Char: 9
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 4 -----
+: CREATE_PROCEDURE_20542_268829.sql
+
+Unknown keyword using
+Line: 107
+Char: 21
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 5 -----
+: CREATE_PROCEDURE_11637_108882.sql
+
+Unknown keyword P1
+Line: 128
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 6 -----
+: CREATE_PROCEDURE_19042_229810.sql
+
+Unknown keyword index
+Line: 89
+Char: 14
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 7 -----
+: CREATE_PROCEDURE_11642_109019.sql
+
+Unknown keyword P1
+Line: 139
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 8 -----
+: CREATE_PROCEDURE_11647_109167.sql
+
+Unknown keyword P1
+Line: 106
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 9 -----
+: CREATE_PROCEDURE_11662_109409.sql
+
+Unknown keyword P1
+Line: 101
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 10 -----
+: CREATE_PROCEDURE_16107_163190.sql
+
+Unknown keyword [
+Line: 44
+Char: 21
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 11 -----
+: CREATE_PROCEDURE_11682_109631.sql
+
+Unknown keyword EXTERNAL
+Line: 6
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 12 -----
+: CREATE_PROCEDURE_17622_192175.sql
+
+Unknown keyword P1
+Line: 128
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 13 -----
+: CREATE_PROCEDURE_17642_192416.sql
+
+Unknown keyword IN
+Line: 75
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 14 -----
+: CREATE_PROCEDURE_16592_170027.sql
+
+Unknown keyword INNER
+Line: 322
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 15 -----
+: CREATE_PROCEDURE_19277_234154.sql
+
+Unknown keyword IN
+Line: 28
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 16 -----
+: CREATE_PROCEDURE_16607_170561.sql
+
+Unknown keyword ON
+Line: 138
+Char: 4
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 17 -----
+: CREATE_PROCEDURE_19317_234614.sql
+
+Unknown keyword using
+Line: 360
+Char: 14
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 18 -----
+: CREATE_PROCEDURE_13782_134158.sql
+
+Unknown keyword to
+Line: 12
+Char: 19
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 19 -----
+: CREATE_PROCEDURE_20927_276455.sql
+
+Unknown keyword using
+Line: 221
+Char: 14
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 20 -----
+: CREATE_PROCEDURE_13817_134418.sql
+
+Unknown keyword TO
+Line: 15
+Char: 26
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 21 -----
+: CREATE_PROCEDURE_19367_235622.sql
+
+Unknown keyword P1
+Line: 70
+Char: 7
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 22 -----
+: CREATE_PROCEDURE_10727_100009.sql
+
+Unknown keyword assignment_id
+Line: 25
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 23 -----
+: CREATE_PROCEDURE_20947_277104.sql
+
+Unknown keyword P1
+Line: 70
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 24 -----
+: CREATE_PROCEDURE_13887_134907.sql
+
+Unknown keyword row
+Line: 18
+Char: 23
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 25 -----
+: CREATE_PROCEDURE_13982_135709.sql
+
+Unknown keyword P2
+Line: 105
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 26 -----
+: CREATE_PROCEDURE_14902_146065.sql
+
+Unknown keyword EXTERNAL
+Line: 10
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 27 -----
+: CREATE_PROCEDURE_12482_116555.sql
+
+Unknown keyword left
+Line: 40
+Char: 8
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 28 -----
+: CREATE_PROCEDURE_14947_146545.sql
+
+Unknown keyword P1
+Line: 65
+Char: 7
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 29 -----
+: CREATE_PROCEDURE_17947_207046.sql
+
+Unknown keyword index
+Line: 83
+Char: 14
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 30 -----
+: CREATE_PROCEDURE_15027_147234.sql
+
+Unknown keyword ON
+Line: 48
+Char: 2
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 31 -----
+: CREATE_PROCEDURE_12522_119594.sql
+
+Unknown keyword ONLY
+Line: 19
+Char: 23
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 32 -----
+: CREATE_PROCEDURE_15042_147725.sql
+
+Unknown keyword P1
+Line: 70
+Char: 9
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 33 -----
+: CREATE_PROCEDURE_15047_147803.sql
+
+Unknown keyword P1
+Line: 80
+Char: 7
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 34 -----
+: CREATE_PROCEDURE_10862_101751.sql
+
+Unknown keyword ON
+Line: 50
+Char: 14
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 35 -----
+: CREATE_PROCEDURE_10867_101885.sql
+
+Unknown keyword ON
+Line: 60
+Char: 33
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 36 -----
+: CREATE_PROCEDURE_10907_102676.sql
+
+Unknown keyword IN
+Line: 4
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 37 -----
+: CREATE_PROCEDURE_19502_243458.sql
+
+Unknown keyword left
+Line: 48
+Char: 12
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 38 -----
+: CREATE_PROCEDURE_10912_102690.sql
+
+Unknown keyword END
+Line: 7
+Char: 1
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 39 -----
+: CREATE_PROCEDURE_12692_121419.sql
+
+Unknown keyword EXTERNAL
+Line: 11
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 40 -----
+: CREATE_PROCEDURE_12747_121914.sql
+
+Unknown keyword P1
+Line: 71
+Char: 9
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 41 -----
+: CREATE_PROCEDURE_12752_121993.sql
+
+Unknown keyword IN
+Line: 14
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 42 -----
+: CREATE_PROCEDURE_15462_151409.sql
+
+Unknown keyword IN
+Line: 17
+Char: 21
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 43 -----
+: CREATE_PROCEDURE_17157_181356.sql
+
+Unknown keyword ON
+Line: 101
+Char: 33
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 44 -----
+: CREATE_PROCEDURE_17167_182567.sql
+
+Unknown keyword ON
+Line: 135
+Char: 41
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 45 -----
+: CREATE_PROCEDURE_12942_125121.sql
+
+Unknown keyword EXTERNAL
+Line: 8
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 46 -----
+: CREATE_PROCEDURE_12947_125160.sql
+
+Unknown keyword EXTERNAL
+Line: 7
+Char: 3
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 47 -----
+: CREATE_PROCEDURE_15652_153363.sql
+
+Unknown keyword is
+Line: 34
+Char: 44
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 48 -----
+: CREATE_PROCEDURE_15602_152657.sql
+
+Unknown keyword TO
+Line: 13
+Char: 26
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 49 -----
+: CREATE_PROCEDURE_15682_153866.sql
+
+Unknown keyword end
+Line: 61
+Char: 1
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 50 -----
+: CREATE_PROCEDURE_15687_155286.sql
+
+Unknown keyword end
+Line: 47
+Char: 1
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 51 -----
+: CREATE_PROCEDURE_11222_105122.sql
+
+Unknown keyword END
+Line: 7
+Char: 1
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 52 -----
+: CREATE_PROCEDURE_18442_218304.sql
+
+Unknown keyword end
+Line: 64
+Char: 1
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 53 -----
+: CREATE_PROCEDURE_19777_248063.sql
+
+Unknown keyword USING
+Line: 224
+Char: 19
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 54 -----
+: CREATE_PROCEDURE_19857_250051.sql
+
+Unknown keyword index
+Line: 89
+Char: 17
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 55 -----
+: CREATE_PROCEDURE_20192_260580.sql
+
+Unknown keyword P1
+Line: 130
+Char: 9
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 56 -----
+: CREATE_PROCEDURE_20202_260745.sql
+
+Unknown keyword P1
+Line: 118
+Char: 9
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 57 -----
+: CREATE_PROCEDURE_20217_260930.sql
+
+Unknown keyword ON
+Line: 29
+Char: 4
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 58 -----
+: CREATE_PROCEDURE_20117_259756.sql
+
+Unknown keyword P2
+Line: 122
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 59 -----
+: CREATE_PROCEDURE_20262_262814.sql
+
+Unknown keyword P2
+Line: 125
+Char: 5
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 60 -----
+: CREATE_PROCEDURE_20277_263404.sql
+
+Unknown keyword ROW
+Line: 32
+Char: 19
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 61 -----
+: CREATE_PROCEDURE_9752_84975.sql
+
+Unknown keyword END
+Line: 24
+Char: 46
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 62 -----
+: CREATE_PROCEDURE_11437_106622.sql
+
+Unknown keyword ON
+Line: 22
+Char: 8
+Mlogica.
+
+--------------------------------------------------
+
+----- Match 63 -----
+: CREATE_PROCEDURE_11442_106818.sql
+
+Unknown keyword ON
+Line: 15
+Char: 59
+Mlogica.
+
+--------------------------------------------------
+

@@ -1,0 +1,74 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Project Path="001_CrossPlatform/001_CrossPlatform.csproj" />
+  <Project Path="002_StandardLibraries/002_StandardLibraries.csproj" />
+  <Project Path="003_ClassTypesDemo/003_ClassTypesDemo.csproj" />
+  <Project Path="003_StronglyTyped/003_StronglyTyped.csproj" />
+  <Project Path="004_ObjectInheritSample/004_ObjectInheritSample.csproj" />
+  <Project Path="004_ObjectOriented/004_ObjectOriented.csproj" />
+  <Project Path="005_ConsoleDisplayOutput/005_ConsoleDisplayOutput.csproj" />
+  <Project Path="006_RootNamespace/006_RootNamespace.csproj" />
+  <Project Path="007_UsingKeyword/007_UsingKeyword.csproj" />
+  <Project Path="008_Syntax/008_Syntax.csproj" />
+  <Project Path="009_ExceptionHandling/009_ExceptionHandling.csproj" />
+  <Project Path="010_GarbageCollection/010_GarbageCollection.csproj" />
+  <Project Path="011_DataTypes/011_DataTypes.csproj" />
+  <Project Path="012_VerbatimAndTextStrings/012_VerbatimAndTextStrings.csproj" />
+  <Project Path="013_OperatorsDemo/013_OperatorsDemo.csproj" />
+  <Project Path="014_VariableTypeInference/014_VariableTypeInference.csproj" />
+  <Project Path="015_StringInterpolation/015_StringInterpolation.csproj" />
+  <Project Path="016_LambdaExpressions/016_LambdaExpressions.csproj" />
+  <Project Path="017_NullHandling/017_NullHandling.csproj" />
+  <Project Path="018_LINQ/018_LINQ.csproj" />
+  <Project Path="019_RawStringLiterals/019_RawStringLiterals.csproj" />
+  <Project Path="020_NullableTypes/020_NullableTypes.csproj" />
+  <Project Path="021_LocalFunctions/021_LocalFunctions.csproj" />
+  <Project Path="022_ExtensionMethods/022_ExtensionMethods.csproj" />
+  <Project Path="023_PatternMatching/023_PatternMatching.csproj" />
+  <Project Path="024_AsyncAwait/024_AsyncAwait.csproj" />
+  <Project Path="025_UsingStatement/025_UsingStatement.csproj" />
+  <Project Path="026_PropertiesAndIndexers/026_PropertiesAndIndexers.csproj" />
+  <Project Path="027_Records/027_Records.csproj" />
+  <Project Path="028_Tuples/028_Tuples.csproj" />
+  <Project Path="029_Attributes/029_Attributes.csproj" />
+  <Project Path="030_Properties/030_Properties.csproj" />
+  <Project Path="031_VarMultipleVariables/031_VarMultipleVariables.csproj" />
+  <Project Path="032_NumberBigIntegerDemo/032_NumberBigIntegerDemo.csproj" />
+  <Project Path="033_DateTimeOperationsDemo/033_DateTimeOperationsDemo.csproj" />
+  <Project Path="034_SelectionControlStructuresDemo/034_SelectionControlStructuresDemo.csproj" />
+  <Project Path="035_UserDefinedFunctions/035_UserDefinedFunctions.csproj" />
+  <Project Path="036_ListCollectionDemo/036_ListCollectionDemo.csproj" />
+  <Project Path="037_DictionaryCollectionDemo/037_DictionaryCollectionDemo.csproj" />
+  <Project Path="038_ArrayDemo/038_ArrayDemo.csproj" />
+  <Project Path="039_ComplexCollectionDemo/039_ComplexCollectionDemo.csproj" />
+  <Project Path="040_OperatorOverload/040_OperatorOverload.csproj" />
+  <Project Path="041_ReadOnlyConstDemo/041_ReadOnlyConstDemo.csproj" />
+  <Project Path="042_RefOutInParamDemo/042_RefOutInParamDemo.csproj" />
+  <Project Path="043_StructNullableDemo/043_StructNullableDemo.csproj" />
+  <Project Path="044_IsOperatorDemo/044_IsOperatorDemo.csproj" />
+  <Project Path="045_AsOperatorDemo/045_AsOperatorDemo.csproj" />
+  <Project Path="046_DeligateDemo/046_DeligateDemo.csproj" />
+  <Project Path="047_StructDemo/047_StructDemo.csproj" />
+  <Project Path="048_InterfaceDemo/048_InterfaceDemo.csproj" />
+  <Project Path="049_VirtualOverrideDemo/049_VirtualOverrideDemo.csproj" />
+  <Project Path="050_NullCoalecseOperatorDemo/050_NullCoalecseOperatorDemo.csproj" />
+  <Project Path="051_FactoryPatternApp/051_FactoryPatternApp.csproj" />
+  <Project Path="052_SOLIDPrincipalDemo/052_SOLIDPrincipalDemo.csproj" />
+  <Project Path="053_RegularExpresionDemo/053_RegularExpresionDemo.csproj" />
+  <Project Path="054_CommandLineArgumentDemo/054_CommandLineArgumentDemo.csproj" />
+  <Project Path="055_ClassVSRecordApp/055_ClassVSRecordApp.csproj" Id="d695f1fd-22c8-45ef-92fc-7dd4dc94ed67" />
+  <Project Path="060_01_SequentialFilesDemoApp/060_01_SequentialFilesDemoApp.csproj" Id="14157d4a-93b2-484b-b3eb-e141815cc4c1" />
+  <Project Path="060_02_FTP_API_DemoApp/060_02_FTP_API_DemoApp.csproj" Id="5657959b-c74c-42c3-b3ef-5fb71664e128" />
+  <Project Path="060_03_WebAPI_DemoApp/060_03_WebAPI_DemoApp.csproj" Id="e0930de5-46e8-4741-9e99-258f198d1987" />
+  <Project Path="060_04_SQLServerConnnectionDemoApp/060_04_SQLServerConnnectionDemoApp.csproj" Id="c6f4548f-e741-499c-a8db-cd89ba00b82f" />
+  <Project Path="060_05_LinkingFilesInDifferentProjectsDemoApp/060_05_LinkingFilesInDifferentProjectsDemoApp.csproj" Id="3e532f7d-9412-4229-b802-de7fa3423a41" />
+  <Project Path="060_08_JSON_FilesDempApp/060_08_JSON_FilesDempApp.csproj" Id="1043c43c-753c-4b6a-ac49-7c80068ad9f8" />
+  <Project Path="061_01_CustomerManagement.Core/061_01_CustomerManagement.Core.csproj" Id="4744bf0a-93f4-44f5-a892-dba10fae7e45" />
+  <Project Path="061_02_CustomerManagement.Console/061_02_CustomerManagement.Console.csproj" Id="c24a203b-72cc-4480-ba76-14f2459099dc" />
+  <Project Path="061_03_CustomerManagement.Web/061_03_CustomerManagement.Web.csproj" Id="a9516e16-6b3a-4b0a-b6fc-cee9703ad8b6" />
+  <Project Path="CustomerManagementWebApp/CustomerManagementWebApp.csproj" />
+  <Project Path="OllamaDemo/OllamaDemo.csproj" />
+  <Project Path="UserManagementApi/UserManagementApi.csproj" />
+</Solution>

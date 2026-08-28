@@ -1,0 +1,408 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">Customer Order Management</h1>
+        <p class="lead">
+            A simple ASP.NET Core MVC application using ADO.NET and SQLite.
+        </p>
+    </div>
+
+    <!-- About -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>About This Application</h3>
+        </div>
+
+        <div class="card-body">
+            <p>
+                This sample application demonstrates how to build a
+                real-world CRUD application using:
+            </p>
+
+            <ul>
+                <li>ASP.NET Core MVC</li>
+                <li>C#</li>
+                <li>ADO.NET</li>
+                <li>SQLite Database</li>
+                <li>Razor Views</li>
+                <li>Data Annotations</li>
+                <li>Parameterized SQL Queries</li>
+            </ul>
+
+            <p>
+                The application manages <strong>Customers</strong> and
+                their <strong>Orders</strong>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Database Relationship -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Database Relationship</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="text-center mb-3">
+                <strong>Customer</strong>
+                <span class="mx-3">1 ───────── * </span>
+                <strong>Orders</strong>
+            </div>
+
+            <p>
+                One customer can have multiple orders.
+                The <code>Orders.CustomerId</code> column is a foreign key
+                referencing <code>Customers.CustomerId</code>.
+            </p>
+
+            <pre>
+Customers
+-----------
+CustomerId (PK)
+Name
+Email
+Phone
+
+        1
+        |
+        | CustomerId
+        |
+        *
+Orders
+-----------
+OrderId (PK)
+CustomerId (FK)
+OrderDate
+Product
+Quantity
+Amount
+            </pre>
+
+        </div>
+    </div>
+
+    <!-- Technologies -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>ADO.NET Components Used</h3>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><code>SQLiteConnection</code></td>
+                        <td>Opens a connection to the SQLite database.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>SQLiteCommand</code></td>
+                        <td>Executes SQL statements.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>SQLiteDataAdapter</code></td>
+                        <td>Retrieves query results into a DataTable.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>SQLiteDataReader</code></td>
+                        <td>Reads query results row by row.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>SQLiteParameter</code></td>
+                        <td>Creates parameterized SQL queries.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>DataTable</code></td>
+                        <td>Stores query results in memory.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <h3>ADO.NET Database Provider Classes & Namespaces</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Database</th>
+                <th>Connection</th>
+                <th>Command</th>
+                <th>DataAdapter</th>
+                <th>DataReader</th>
+                <th>Parameter</th>
+                <th>Namespace</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <!-- SQLite -->
+            <tr>
+                <td><strong>SQLite</strong></td>
+                <td><code>SQLiteConnection</code></td>
+                <td><code>SQLiteCommand</code></td>
+                <td><code>SQLiteDataAdapter</code></td>
+                <td><code>SQLiteDataReader</code></td>
+                <td><code>SQLiteParameter</code></td>
+                <td><code>System.Data.SQLite</code></td>
+            </tr>
+
+            <!-- SQL Server -->
+            <tr>
+                <td><strong>SQL Server</strong></td>
+                <td><code>SqlConnection</code></td>
+                <td><code>SqlCommand</code></td>
+                <td><code>SqlDataAdapter</code></td>
+                <td><code>SqlDataReader</code></td>
+                <td><code>SqlParameter</code></td>
+                <td><code>Microsoft.Data.SqlClient</code></td>
+            </tr>
+
+            <!-- PostgreSQL -->
+            <tr>
+                <td><strong>PostgreSQL</strong></td>
+                <td><code>NpgsqlConnection</code></td>
+                <td><code>NpgsqlCommand</code></td>
+                <td><code>NpgsqlDataAdapter</code></td>
+                <td><code>NpgsqlDataReader</code></td>
+                <td><code>NpgsqlParameter</code></td>
+                <td><code>Npgsql</code></td>
+            </tr>
+
+            <!-- Oracle -->
+            <tr>
+                <td><strong>Oracle</strong></td>
+                <td><code>OracleConnection</code></td>
+                <td><code>OracleCommand</code></td>
+                <td><code>OracleDataAdapter</code></td>
+                <td><code>OracleDataReader</code></td>
+                <td><code>OracleParameter</code></td>
+                <td><code>Oracle.ManagedDataAccess.Client</code></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <!-- Installation -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Installation & Setup</h3>
+        </div>
+
+        <div class="card-body">
+
+            <h5>1. Install .NET SDK</h5>
+
+            <p>
+                Install the required .NET SDK on your computer.
+            </p>
+
+            <pre>dotnet --version</pre>
+
+            <p>
+                Make sure the command displays a valid .NET SDK version.
+            </p>
+
+
+            <h5>2. Download / Clone the Project</h5>
+
+            <p>
+                Download the project or clone it from your source repository.
+            </p>
+
+            <pre>git clone &lt;repository-url&gt;</pre>
+
+
+            <h5>3. Open the Project Folder</h5>
+
+            <pre>cd CustomerOrderMvc</pre>
+
+
+            <h5>4. Restore NuGet Packages</h5>
+
+            <pre>dotnet restore</pre>
+
+
+            <h5>5. Build the Application</h5>
+
+            <pre>dotnet build</pre>
+
+
+            <h5>6. Run the Application</h5>
+
+            <pre>dotnet run</pre>
+
+            <p>
+                The application will display the local HTTP/HTTPS URL in
+                the console.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Database -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Database Setup</h3>
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                No separate database server is required.
+                This application uses SQLite.
+            </p>
+
+            <p>
+                When the application starts, it automatically:
+            </p>
+
+            <ol>
+                <li>Creates the SQLite database.</li>
+                <li>Creates the Customers table.</li>
+                <li>Creates the Orders table.</li>
+                <li>Creates the Customer → Orders relationship.</li>
+                <li>Inserts sample customer and order data.</li>
+            </ol>
+
+            <p>
+                The database file is:
+            </p>
+
+            <pre>Database/CustomerOrders.db</pre>
+
+        </div>
+    </div>
+
+    <!-- Application Features -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Application Features</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h5>Customers</h5>
+
+                    <ul>
+                        <li>View customers</li>
+                        <li>Add customer</li>
+                        <li>Edit customer</li>
+                        <li>Delete customer</li>
+                        <li>View customer's orders</li>
+                    </ul>
+
+                    <a asp-controller="Customers"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        Manage Customers
+                    </a>
+                </div>
+
+                <div class="col-md-6">
+                    <h5>Orders</h5>
+
+                    <ul>
+                        <li>View orders</li>
+                        <li>Add order</li>
+                        <li>Edit order</li>
+                        <li>Delete order</li>
+                        <li>Filter orders by customer</li>
+                    </ul>
+
+                    <a asp-controller="Orders"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        Manage Orders
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Project Structure -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Project Structure</h3>
+        </div>
+
+        <div class="card-body">
+
+            <pre>
+CustomerOrderMvc
+│
+├── Controllers
+│   ├── CustomersController.cs
+│   └── OrdersController.cs
+│
+├── Data
+│   ├── DbHelper.cs
+│   └── DatabaseInitializer.cs
+│
+├── Models
+│   ├── Customer.cs
+│   └── Order.cs
+│
+├── Views
+│   ├── Customers
+│   ├── Orders
+│   ├── Home
+│   └── Shared
+│
+├── Database
+│   └── CustomerOrders.db
+│
+├── Program.cs
+├── appsettings.json
+└── CustomerOrderMvc.csproj
+            </pre>
+
+        </div>
+    </div>
+
+    <!-- Useful Commands -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Useful .NET Commands</h3>
+        </div>
+
+        <div class="card-body">
+
+            <pre>
+dotnet --version
+dotnet restore
+dotnet build
+dotnet run
+dotnet clean
+dotnet publish -c Release
+            </pre>
+
+        </div>
+    </div>
+
+</div>

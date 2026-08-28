@@ -1,0 +1,12 @@
+@TestWebAPIApp_HostAddress = https://localhost:53954
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+### Simple Test API
+GET {{TestWebAPIApp_HostAddress}}/api/test
+Accept: application/json
+
+
+###Secure API access with Bearer JWT Token
+GET {{TestWebAPIApp_HostAddress}}/api/admin/stats
+Accept: application/json
+Authorization: Bearer {{token}}
