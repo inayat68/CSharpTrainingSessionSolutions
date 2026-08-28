@@ -12,22 +12,55 @@ internal class Program
         Console.WriteLine("========================================");
 
         // --------------------------------------------------
-        // Create object
+        // Create multiple Employee objects
         // --------------------------------------------------
 
-        Employee employee = new Employee
-        {
-            Id = 101,
-            Name = "Ali",
-            Department = "IT",
-            Salary = 150000,
-            Skills =
-            [
-                "C#",
-                ".NET",
-                "SQL Server"
-            ]
-        };
+        List<Employee> employees =
+        [
+            new Employee
+            {
+                Id = 101,
+                Name = "Ali",
+                DepartmentName = "IT",
+                Salary = 150000,
+                Skills =
+                [
+                    "C#",
+                    ".NET",
+                    "SQL Server"
+                ],
+                Age = 40
+            },
+
+            new Employee
+            {
+                Id = 102,
+                Name = "Ahmed",
+                DepartmentName = "HR",
+                Salary = 120000,
+                Skills =
+                [
+                    "Recruitment",
+                    "Communication",
+                    "Employee Management"
+                ]
+            },
+
+            new Employee
+            {
+                Id = 103,
+                Name = "Sara",
+                DepartmentName = "Finance",
+                Salary = 135000,
+                Skills =
+                [
+                    "Accounting",
+                    "Excel",
+                    "Financial Analysis"
+                ],
+                Age = 21
+            }
+        ];
 
         // --------------------------------------------------
         // JSON options
@@ -40,13 +73,13 @@ internal class Program
         };
 
         // --------------------------------------------------
-        // Serialize object to JSON
+        // Serialize objects to JSON
         // --------------------------------------------------
 
-        string json = JsonSerializer.Serialize(employee, options);
+        string json = JsonSerializer.Serialize(employees, options);
 
         Console.WriteLine();
-        Console.WriteLine("1. Object → JSON");
+        Console.WriteLine("1. Objects → JSON");
         Console.WriteLine("--------------------------------");
 
         Console.WriteLine(json);
@@ -55,11 +88,11 @@ internal class Program
         // Save JSON file
         // --------------------------------------------------
 
-        string folder = Path.Combine(AppContext.BaseDirectory, "Data");
+        string folder = Path.Combine(AppContext.BaseDirectory.Replace("\\bin\\Debug\\net10.0", ""), "Data");
 
         Directory.CreateDirectory(folder);
 
-        string filePath = Path.Combine(folder, "employee.json");
+        string filePath = Path.Combine(folder, "employees.json");
 
         File.WriteAllText(filePath, json);
 
@@ -83,26 +116,36 @@ internal class Program
         // --------------------------------------------------
 
         Console.WriteLine();
-        Console.WriteLine("3. JSON → Object");
+        Console.WriteLine("3. JSON → Objects");
         Console.WriteLine("--------------------------------");
 
-        Employee? employeeFromJson = JsonSerializer.Deserialize<Employee>(jsonFromFile, options);
+        List<Employee>? employeesFromJson =
+            JsonSerializer.Deserialize<List<Employee>>(jsonFromFile, options);
 
-        if (employeeFromJson != null)
+        if (employeesFromJson != null)
         {
-            Console.WriteLine($"ID: {employeeFromJson.Id}");
+            // --------------------------------------------------
+            // Iterate through all employees
+            // --------------------------------------------------
 
-            Console.WriteLine($"Name: {employeeFromJson.Name}");
-
-            Console.WriteLine($"Department: {employeeFromJson.Department}");
-
-            Console.WriteLine($"Salary: {employeeFromJson.Salary:N2}");
-
-            Console.WriteLine("Skills:");
-
-            foreach (string skill in employeeFromJson.Skills)
+            foreach (Employee employee in employeesFromJson)
             {
-                Console.WriteLine($"  - {skill}");
+                Console.WriteLine($"ID: {employee.Id}");
+
+                Console.WriteLine($"Name: {employee.Name}");
+
+                Console.WriteLine($"Department: {employee.DepartmentName}");
+
+                Console.WriteLine($"Salary: {employee.Salary:N2}");
+
+                Console.WriteLine("Skills:");
+
+                foreach (string skill in employee.Skills)
+                {
+                    Console.WriteLine($"  - {skill}");
+                }
+
+                Console.WriteLine("--------------------------------");
             }
         }
 

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 101,
+    "name": "Ali",
+    "departmentName": "IT",
+    "salary": 150000,
+    "skills": [
+      "C#",
+      ".NET",
+      "SQL Server"
+    ],
+    "age": 40
+  },
+  {
+    "id": 102,
+    "name": "Ahmed",
+    "departmentName": "HR",
+    "salary": 120000,
+    "skills": [
+      "Recruitment",
+      "Communication",
+      "Employee Management"
+    ],
+    "age": 40
+  },
+  {
+    "id": 103,
+    "name": "Sara",
+    "departmentName": "Finance",
+    "salary": 135000,
+    "skills": [
+      "Accounting",
+      "Excel",
+      "Financial Analysis"
+    ],
+    "age": 21
+  }
+]
