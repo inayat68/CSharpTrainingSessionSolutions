@@ -1,0 +1,6 @@
+REPORT SalesReport
+TITLE Sales Report
+COLUMN CustomerName
+COLUMN Amount
+TOTAL Amount
+END REPORT

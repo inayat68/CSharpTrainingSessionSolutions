@@ -244,6 +244,13 @@ public class Program
 
         // OUTPUT:
         // David (1005)
+
+        Console.WriteLine("");
+        Console.WriteLine("==============================================");
+        Console.WriteLine("Press any key to exit...");
+        Console.WriteLine("==============================================");
+        Console.ReadKey();
+
     }
 }
 

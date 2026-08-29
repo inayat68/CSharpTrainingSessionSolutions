@@ -1,0 +1,7 @@
+PAGE Dashboard
+TITLE Inventory Dashboard
+
+SECTION Summary
+    Total Items: 1250
+    Low Stock: 23
+END SECTION

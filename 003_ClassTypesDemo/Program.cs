@@ -322,6 +322,11 @@ public class Program
 
         // OUTPUT:
         // Record: Sara, 25
+
+        Console.WriteLine("");
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
+
     }
 }
 

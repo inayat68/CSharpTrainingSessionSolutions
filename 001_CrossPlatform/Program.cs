@@ -76,7 +76,8 @@ public class Program
         Console.WriteLine("=== JAVA vs C# — SYNTAX DIFFERENCES ===");
 
         Console.WriteLine("01. C# uses namespace; Java uses package.");
-        Console.WriteLine("02. C# uses 'using' for namespaces; Java uses 'import' for packages/types.");
+        Console.WriteLine("02. C# has extension *.cs; Java uses *.java extension files.");
+        Console.WriteLine("03. C# uses 'using' for namespaces; Java uses 'import' for packages/types.");
         //go to Project 02
 
         Console.WriteLine("04. Console Input/Output: C# uses Console.WriteLine(), Console.ReadLine(), and Console.ReadKey();" +
@@ -84,14 +85,14 @@ public class Program
                             "System.in.read() / System.console() for key/input handling.");
         //got to Project 05
 
-        Console.WriteLine("03. C# commonly uses PascalCase for methods like GetName(); Java commonly uses camelCase like getName().");
-        Console.WriteLine("05. C# uses string interpolation $\"Hello {name}\"; Java commonly uses concatenation or String.format().");
+        Console.WriteLine("05. C# commonly uses PascalCase for methods like GetName(); Java commonly uses camelCase like getName().");
+        Console.WriteLine("06. C# uses string interpolation $\"Hello {name}\"; Java commonly uses concatenation or String.format().");
         //got to Project 15
 
-        Console.WriteLine("06. C# uses string/String; Java uses String.");
+        Console.WriteLine("07. C# uses string/String; Java uses String.");
         //go to Project 11
 
-        Console.WriteLine("07. C# uses ':' for class inheritance; Java uses 'extends'.");
+        Console.WriteLine("08. C# uses ':' for class inheritance; Java uses 'extends'.");
         Console.WriteLine("08. C# uses ':' for interface implementation; Java uses 'implements'.");
         Console.WriteLine("09. C# uses base() to call a parent constructor; Java uses super().");
         Console.WriteLine("10. C# uses properties like Name { get; set; }; Java commonly uses getName() and setName().");
@@ -207,6 +208,11 @@ public class Program
 
         Console.WriteLine();
         Console.WriteLine("Done.");
+
+        Console.WriteLine("");
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
+
     }
 
     public static void Test1()

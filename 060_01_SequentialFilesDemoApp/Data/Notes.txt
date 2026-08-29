@@ -1,0 +1,5 @@
+File Reader Demo
+================
+This is a sample TXT file.
+
+The application reads this complete file using File.ReadAllText().

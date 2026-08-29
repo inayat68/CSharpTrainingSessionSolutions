@@ -314,6 +314,12 @@ public class Program
         // OUTPUT:
         // Salary: 1234.57 USD
 
+        Console.WriteLine("");
+        Console.WriteLine("==============================================");
+        Console.WriteLine("Press any key to exit...");
+        Console.WriteLine("==============================================");
+        Console.ReadKey();
+
 
         // ============================================================
         // JAVA → C# QUICK COMPARISON
