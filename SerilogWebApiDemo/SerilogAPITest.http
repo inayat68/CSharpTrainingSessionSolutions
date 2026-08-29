@@ -1,0 +1,203 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@ResultApi_HostAddress = https://localhost:7080
+
+### ============================================================
+### ResultController API Tests
+### ============================================================
+
+
+### ------------------------------------------------------------
+### 200 OK - String
+### GET /api/Result/ok
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/ok
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 200 OK - Object
+### GET /api/Result/employee
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/employee
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 404 Not Found
+### GET /api/Result/notfound
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/notfound
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 400 Bad Request
+### GET /api/Result/badrequest
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/badrequest
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 401 Unauthorized
+### GET /api/Result/unauthorized
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/unauthorized
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 403 Forbidden
+### GET /api/Result/forbidden
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/forbidden
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 204 No Content
+### GET /api/Result/nocontent
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/nocontent
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 201 Created
+### POST /api/Result/create
+### ------------------------------------------------------------
+POST {{ResultApi_HostAddress}}/api/Result/create
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 201 CreatedAtAction
+### POST /api/Result/create2
+### ------------------------------------------------------------
+POST {{ResultApi_HostAddress}}/api/Result/create2
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Get Employee By ID - 200 OK
+### GET /api/Result/101
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/101
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Get Employee By ID - 400 Bad Request
+### ID <= 0
+### GET /api/Result/0
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/0
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Get Employee By ID - 404 Not Found
+### ID != 101
+### GET /api/Result/999
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/999
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 409 Conflict
+### POST /api/Result/conflict
+### ------------------------------------------------------------
+POST {{ResultApi_HostAddress}}/api/Result/conflict
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 405 Method Not Allowed
+### GET /api/Result/method-not-allowed
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/method-not-allowed
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### 500 Internal Server Error
+### GET /api/Result/error
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/error
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Find Employee - 200 OK
+### GET /api/Result/find/101
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/find/101
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Find Employee - 404 Not Found
+### GET /api/Result/find/999
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/find/999
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Search Employee - 200 OK
+### GET /api/Result/search/101
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/search/101
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Search Employee - 400 Bad Request
+### ID <= 0
+### GET /api/Result/search/0
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/search/0
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Search Employee - 404 Not Found
+### GET /api/Result/search/999
+### ------------------------------------------------------------
+GET {{ResultApi_HostAddress}}/api/Result/search/999
+Accept: application/json
+
+
+### ------------------------------------------------------------
+### Async Process Employee - 200 OK
+### POST /api/Result/process
+### ------------------------------------------------------------
+POST {{ResultApi_HostAddress}}/api/Result/process
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "John",
+  "department": "IT"
+}
+
+
+### ------------------------------------------------------------
+### Async Process Employee - 400 Bad Request
+### Missing Employee Name
+### POST /api/Result/process
+### ------------------------------------------------------------
+POST {{ResultApi_HostAddress}}/api/Result/process
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "",
+  "department": "Finance"
+}
+
+
+### ============================================================
+### END
+### ============================================================

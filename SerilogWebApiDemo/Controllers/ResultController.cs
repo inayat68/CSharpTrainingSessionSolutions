@@ -7,7 +7,12 @@ namespace SerilogWebApiDemo.Controllers;
 //.NET Sample Codes
 //https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main
 
+//https://learn.microsoft.com/en-us/aspnet/core/fundamentals/
 //https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types
+
+//Tutorial: Create a controller-based web API with ASP.NET Core
+//https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-10.0&tabs=visual-studio
+
 //https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/
 //https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/mvc/action-return-types/8.x/WebApiSample/Controllers/ActionResultProductsController.cs
 
