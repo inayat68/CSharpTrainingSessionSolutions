@@ -116,19 +116,94 @@ internal class Program
          map.getOrDefault(k,v)     -> TryGetValue()
          map.replace(k,v)          -> map[k] = v
 
-         for (Entry e : map.entrySet())
-                                   -> foreach (var e in map)
+         for (Entry e : map.entrySet())         -> foreach (var e in map)
 
-         JAVA Streams              -> C# LINQ
+         JAVA Streams                           -> C# LINQ
         */
 
 
         // =========================================================
-        // 1. CREATE MAP
+        // 1. SHOPPING CART
         // =========================================================
 
-        Dictionary<object, object> map =
-            new Dictionary<object, object>();
+        Dictionary<string, int> cart = new Dictionary<string, int>();
+
+        cart["Apple"] = 3;
+        cart["Orange"] = 5;
+
+        Console.WriteLine($"Apple qty: {cart["Apple"] + cart["Orange"]}");
+
+        // JAVA:
+        // Map<String,Integer> cart = new HashMap<>();
+        // cart.put("Apple", 3);
+        // cart.get("Apple");
+
+        // =========================================================
+        // 2. CREATE C# Dictionary and Java MAP
+        // =========================================================
+        // C#: Create a Dictionary with int key and string value
+        Dictionary<int, string> employees = new Dictionary<int, string>();
+        // Java equivalent:
+        // Map<Integer, String> employees = new HashMap<>();
+
+        employees.Add(101, "Ali");
+        employees.Add(102, "Ahmed");
+        employees.Add(103, "Sara");
+        // Add items
+        // Java equivalent:
+        // employees.put(101, "Ali");
+        // employees.put(102, "Ahmed");
+        // employees.put(103, "Sara");
+
+        // ----------------------------------------------------
+        // Iterate through Dictionary using foreach
+        // ----------------------------------------------------
+
+        // C#:
+        foreach (KeyValuePair<int, string> employee in employees)
+        {
+            Console.WriteLine(
+                $"Employee ID: {employee.Key}, Name: {employee.Value}");
+        }
+        // Java equivalent:
+        // for (Map.Entry<Integer, String> employee : employees.entrySet())
+        // {
+        //     System.out.println(
+        //         "Employee ID: " + employee.getKey() +
+        //         ", Name: " + employee.getValue());
+        // }
+
+        // ----------------------------------------------------
+        // Access Key and Value separately
+        // ----------------------------------------------------
+
+        // C#:
+        foreach (int id in employees.Keys)
+        {
+            Console.WriteLine($"ID: {id}");
+        }
+        // Java equivalent:
+        // for (Integer id : employees.keySet())
+        // {
+        //     System.out.println("ID: " + id);
+        // }
+
+        foreach (string name in employees.Values)
+        {
+            Console.WriteLine($"Name: {name}");
+        }
+        // Java equivalent:
+        // for (String name : employees.values())
+        // {
+        //     System.out.println("Name: " + name);
+        // }
+
+
+        // =========================================================
+        // 2. CREATE C# Object Dictionary / Java Map
+        // =========================================================
+
+        Dictionary<object, object> map = new Dictionary<object, object>();
 
         // JAVA:
         // Map<Object, Object> map = new HashMap<>();
@@ -138,15 +213,26 @@ internal class Program
         map[1] = "Number Key";
         map[true] = "Boolean Key";
 
-        Console.WriteLine(
-            "Initial Map: " +
-            string.Join(", ", map.Select(x => $"{x.Key}={x.Value}")));
-
         // JAVA:
         // map.put("name", "Ali");
         // map.put("age", 25);
         // map.put(1, "Number Key");
         // map.put(true, "Boolean Key");
+
+
+        Console.WriteLine(
+            "Initial Map: " +
+            string.Join(", ", map.Select(x => $"{x.Key}={x.Value}")));
+
+        /* In Java
+            System.out.println(
+                "Initial Map: " +
+                    map.entrySet()
+                    .stream()
+                    .map(x -> x.getKey() + "=" + x.getValue())
+                    .collect(Collectors.joining(", "))
+            );
+         */
 
         // C# Dictionary<object,object> can use different key types.
         // Dictionary<string,object> is more common for string keys.
@@ -298,24 +384,34 @@ internal class Program
         // students.put(102, "Sara");
         // students.get(102);
 
-
         // =========================================================
-        // 11. SHOPPING CART
+        // 11. TryGetValue()
         // =========================================================
 
-        Dictionary<string, int> cart =
-            new Dictionary<string, int>();
+        Dictionary<int, string> d = new Dictionary<int, string>();
 
-        cart["Apple"] = 3;
+        d.Add(101, "Ali");
+        d.Add(102, "Ahmed");
 
-        Console.WriteLine(
-            $"Apple qty: {cart["Apple"]}");
+        if (d.TryGetValue(103, out string? name))
+        {
+            Console.WriteLine(name);
+        }
+        else
+        {
+            Console.WriteLine("Unknown");
+        }
 
-        // JAVA:
-        // Map<String,Integer> cart = new HashMap<>();
-        // cart.put("Apple", 3);
-        // cart.get("Apple");
+        /*
+            Map<Integer, String> map = new HashMap<>();
 
+            map.put(101, "Ali");
+            map.put(102, "Ahmed");
+
+            String name = map.getOrDefault(103, "Unknown");
+
+            System.out.println(name);   // Unknown
+        */
 
         // =========================================================
         // 12. OBJECT AS KEY

@@ -12,7 +12,6 @@ internal class Program
         Console.WriteLine("========================================");
 
         using HttpClient client = new HttpClient();
-
         client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
 
         try

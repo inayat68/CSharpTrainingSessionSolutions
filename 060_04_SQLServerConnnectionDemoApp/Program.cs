@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+//dotnet add package microsoft.data.sqlclient --source https://api.nuget.org/v3/index.json
 
 namespace SqlServer;
 
@@ -15,10 +16,22 @@ internal class Program
         // --------------------------------------------------
 
         string connectionString =
-            "Server=localhost;" +
-            "Database=TrainingDb;" +
-            "Trusted_Connection=True;" +
-            "TrustServerCertificate=True;";
+            "Server=localhost,1433;" +              //Data Source / Address / Addr / Network Address
+            "Database=BookCatalog;" +               //Initial Catalog
+            "User Id=sa;Password=Strong@12345;" +   //UID,User,UserId   /   pwd     : pwd='Strong;123';
+             //"Integrated Security=True;" +        //Trusted_Connection
+            "TrustServerCertificate=True;";         //-
+
+        var builder = new SqlConnectionStringBuilder
+        {
+            DataSource = "localhost,1433",
+            InitialCatalog = "BookCatalog",
+            UserID = "sa",
+            Password = "Strong@12;345",
+            TrustServerCertificate = true
+        };
+
+        string connectionStringTest = builder.ConnectionString;
 
         try
         {

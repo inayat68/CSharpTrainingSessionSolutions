@@ -14,6 +14,58 @@ class Program
         // C# vs JAVA
         // ============================================================
 
+        // ============================================================
+        // QUICK COMPARISON
+        // ============================================================
+
+        /*
+        +---------------------------+-----------------------------+-----------------------------+
+        | ARRAY                     | JAVA                        | C#                          |
+        +---------------------------+-----------------------------+-----------------------------+
+        | Integer array             | int[]                       | int[]                       |
+        | Double array              | double[]                    | double[]                    |
+        | String array              | String[]                    | string[]                    |
+        | Character array           | char[]                      | char[]                      |
+        | Boolean array             | boolean[]                   | bool[]                      |
+        | Object array              | Object[]                    | object[]                    |
+        | Custom object array       | User[]                      | User[]                      |
+        | Array length              | arr.length                  | arr.Length                  |
+        | Array index               | arr[i]                      | arr[i]                      |
+        | 2D array                  | int[][]                    | int[,] / int[][]            |
+        | Jagged array              | int[][]                    | int[][]                     |
+        | Type checking             | instanceof                 | is                          |
+        | Cast                      | (Type)obj                  | (Type)obj                   |
+        +---------------------------+-----------------------------+-----------------------------+
+        */
+
+        /*
+         IMPORTANT:
+
+         C# primitive/value types:
+             int, double, bool, char
+
+         C# reference/object types:
+             string, User, Product, object
+
+         object[] can hold different types:
+             int
+             string
+             double
+             bool
+             custom objects
+
+         Example:
+             object[] data = { 10, "Ali", 25.5, true };
+
+         Java equivalent:
+             Object[] data = { 10, "Ali", 25.5, true };
+
+         The main difference is that Java uses Object as the
+         common reference type, while C# uses object (alias of
+         System.Object).
+        */
+
+
         // ------------------------------------------------------------
         // 1. INTEGER ARRAY
         // ------------------------------------------------------------
@@ -180,8 +232,7 @@ class Program
 
         foreach (object obj in objects)
         {
-            Console.WriteLine(
-                obj + " -> " + obj.GetType().Name);
+            Console.WriteLine(obj + " -> " + obj.GetType().Name);
         }
 
         // Java:
@@ -400,7 +451,7 @@ class Program
 
 
         // ------------------------------------------------------------
-        // 15. MULTI-DIMENSIONAL ARRAY
+        // 15. MULTI-DIMENSIONAL ARRAY - An array with two or more dimensions, such as rows and columns (int[,] in C#).
         // ------------------------------------------------------------
 
         // JAVA:
@@ -438,7 +489,7 @@ class Program
 
 
         // ------------------------------------------------------------
-        // 16. JAGGED ARRAY
+        // 16. JAGGED ARRAY - An array of arrays where each inner array can have a different size (int[][] in C#).
         // ------------------------------------------------------------
 
         // C# jagged array = array of arrays.
@@ -519,56 +570,6 @@ class Program
         // }
 
 
-        // ============================================================
-        // QUICK COMPARISON
-        // ============================================================
-
-        /*
-        +---------------------------+-----------------------------+-----------------------------+
-        | ARRAY                     | JAVA                        | C#                          |
-        +---------------------------+-----------------------------+-----------------------------+
-        | Integer array             | int[]                       | int[]                       |
-        | Double array              | double[]                    | double[]                    |
-        | String array              | String[]                    | string[]                    |
-        | Character array           | char[]                      | char[]                      |
-        | Boolean array             | boolean[]                   | bool[]                      |
-        | Object array              | Object[]                    | object[]                    |
-        | Custom object array       | User[]                      | User[]                      |
-        | Array length              | arr.length                  | arr.Length                  |
-        | Array index               | arr[i]                      | arr[i]                      |
-        | 2D array                  | int[][]                    | int[,] / int[][]            |
-        | Jagged array              | int[][]                    | int[][]                     |
-        | Type checking             | instanceof                 | is                          |
-        | Cast                      | (Type)obj                  | (Type)obj                   |
-        +---------------------------+-----------------------------+-----------------------------+
-        */
-
-        /*
-         IMPORTANT:
-
-         C# primitive/value types:
-             int, double, bool, char
-
-         C# reference/object types:
-             string, User, Product, object
-
-         object[] can hold different types:
-             int
-             string
-             double
-             bool
-             custom objects
-
-         Example:
-             object[] data = { 10, "Ali", 25.5, true };
-
-         Java equivalent:
-             Object[] data = { 10, "Ali", 25.5, true };
-
-         The main difference is that Java uses Object as the
-         common reference type, while C# uses object (alias of
-         System.Object).
-        */
     }
 
 

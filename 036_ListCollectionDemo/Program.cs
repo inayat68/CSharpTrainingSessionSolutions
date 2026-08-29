@@ -64,8 +64,7 @@ public class Program
         list.Add("C");
         list.Add("B");
 
-        Console.WriteLine(
-            "After Add(): " + string.Join(", ", list));
+        Console.WriteLine("After Add(): " + string.Join(", ", list));
 
         // OUTPUT:
         // After Add(): A, B, C, B
@@ -75,8 +74,7 @@ public class Program
         // C#:   list.Insert(2, "X");
         list.Insert(2, "X");
 
-        Console.WriteLine(
-            "After Insert(): " + string.Join(", ", list));
+        Console.WriteLine("After Insert(): " + string.Join(", ", list));
 
         // OUTPUT:
         // After Insert(): A, B, X, C, B
@@ -193,8 +191,7 @@ public class Program
         // LinkedList<String> linkedList = new LinkedList<>();
 
         // C#:
-        LinkedList<string> linkedList =
-            new LinkedList<string>();
+        LinkedList<string> linkedList = new LinkedList<string>();
 
         linkedList.AddLast("Apple");
         linkedList.AddLast("Banana");
@@ -204,8 +201,7 @@ public class Program
         // linkedList.add(1, "Orange");
 
         // C#:
-        LinkedListNode<string>? bananaNode =
-            linkedList.Find("Banana");
+        LinkedListNode<string>? bananaNode = linkedList.Find("Banana");
 
         if (bananaNode != null)
             linkedList.AddBefore(bananaNode, "Orange");
@@ -231,7 +227,7 @@ public class Program
 
 
         // ============================================================
-        // 4. VECTOR
+        // 4. VECTOR - In Java, Vector is a synchronized, thread-safe dynamic array that grows automatically as elements are added.
         // ============================================================
 
         // Java:
@@ -265,7 +261,7 @@ public class Program
 
 
         // ============================================================
-        // 5. STACK
+        // 5. STACK - Stack is a LIFO (Last-In, First-Out) data structure where the last element added is the first one removed.
         // ============================================================
 
         // Java:
@@ -280,8 +276,7 @@ public class Program
         stack.Push(20);
         stack.Push(30);
 
-        Console.WriteLine(
-            "Stack: " + string.Join(", ", stack));
+        Console.WriteLine("Stack: " + string.Join(", ", stack));
 
         // OUTPUT:
         // Stack: 30, 20, 10
@@ -292,15 +287,13 @@ public class Program
 
         // Java: stack.pop()
         // C#:   stack.Pop()
-        Console.WriteLine(
-            "Pop: " + stack.Pop());
+        Console.WriteLine("Pop: " + stack.Pop());
 
         // OUTPUT:
         // Pop: 30
 
 
-        Console.WriteLine(
-            "After Pop: " + string.Join(", ", stack));
+        Console.WriteLine("After Pop: " + string.Join(", ", stack));
 
         // OUTPUT:
         // After Pop: 20, 10
@@ -308,23 +301,21 @@ public class Program
 
         // Java: stack.peek()
         // C#:   stack.Peek()
-        Console.WriteLine(
-            "Peek: " + stack.Peek());
+        Console.WriteLine("Peek: " + stack.Peek());
 
         // OUTPUT:
         // Peek: 20
 
 
         // ============================================================
-        // 6. HASHSET
+        // 6. HASHSET - HashSet is a collection that stores unique elements and provides fast insertion, removal, and lookup using hashing.
         // ============================================================
 
         // Java:
         // Set<String> hashSet = new HashSet<>();
 
         // C#:
-        HashSet<string> hashSet =
-            new HashSet<string>();
+        HashSet<string> hashSet = new HashSet<string>();
 
         // Java: hashSet.add("Banana");
         // C#:   hashSet.Add("Banana");
@@ -333,16 +324,13 @@ public class Program
         hashSet.Add("Mango");
         hashSet.Add("Apple"); // duplicate ignored
 
-        Console.WriteLine(
-            "HashSet: " + string.Join(", ", hashSet));
+        Console.WriteLine("HashSet: " + string.Join(", ", hashSet));
 
         // OUTPUT:
         // Apple, Mango, Banana
         // NOTE: HashSet order is not guaranteed.
 
-        Console.WriteLine(
-            "Contains Apple: " +
-            hashSet.Contains("Apple"));
+        Console.WriteLine("Contains Apple: " + hashSet.Contains("Apple"));
 
         // OUTPUT:
         // Contains Apple: True
@@ -358,8 +346,7 @@ public class Program
         // C# has no direct LinkedHashSet<T>.
         // List<T> + Contains() can provide similar behavior.
 
-        List<string> linkedHashSet =
-            new List<string>();
+        List<string> linkedHashSet = new List<string>();
 
         void AddUnique(string value)
         {
@@ -372,32 +359,28 @@ public class Program
         AddUnique("Mango");
         AddUnique("Apple"); // ignored
 
-        Console.WriteLine(
-            "LinkedHashSet: " +
-            string.Join(", ", linkedHashSet));
+        Console.WriteLine("LinkedHashSet: " + string.Join(", ", linkedHashSet));
 
         // OUTPUT:
         // LinkedHashSet: Banana, Apple, Mango
 
 
         // ============================================================
-        // 8. TREESET
+        // 8. TREESET = TreeSet is a collection that stores unique elements in sorted order and is typically implemented using a balanced tree.
         // ============================================================
 
         // Java:
         // Set<String> treeSet = new TreeSet<>();
 
         // C#:
-        SortedSet<string> treeSet =
-            new SortedSet<string>();
+        SortedSet<string> treeSet = new SortedSet<string>();
 
         treeSet.Add("Banana");
         treeSet.Add("Apple");
         treeSet.Add("Mango");
         treeSet.Add("Apple"); // duplicate ignored
 
-        Console.WriteLine(
-            "TreeSet: " + string.Join(", ", treeSet));
+        Console.WriteLine("TreeSet: " + string.Join(", ", treeSet));
 
         // OUTPUT:
         // TreeSet: Apple, Banana, Mango
@@ -417,33 +400,24 @@ public class Program
         */
 
         // C# LINQ:
-        List<string> names = list
-            .Where(x => x.Length > 3)
-            .Select(x => x.ToUpper())
-            .ToList();
+        List<string> names = list.Where(x => x.Length > 3).Select(x => x.ToUpper()).ToList();
 
-        Console.WriteLine(
-            "LINQ: " + string.Join(", ", names));
+        Console.WriteLine("LINQ: " + string.Join(", ", names));
 
 
         // ============================================================
         // 10. LIST / LINQ METHODS
         // ============================================================
 
-        List<int> numbers =
-            new List<int> { 10, 20, 30, 40, 50 };
+        List<int> numbers = new List<int> { 10, 20, 30, 40, 50 };
 
         // Java:
         // numbers.stream().filter(x -> x > 25)
 
         // C#:
-        List<int> greaterThan25 = numbers
-            .Where(x => x > 25)
-            .ToList();
+        List<int> greaterThan25 = numbers.Where(x => x > 25).ToList();
 
-        Console.WriteLine(
-            "Where > 25: " +
-            string.Join(", ", greaterThan25));
+        Console.WriteLine("Where > 25: " + string.Join(", ", greaterThan25));
 
         // OUTPUT:
         // Where > 25: 30, 40, 50
@@ -453,13 +427,9 @@ public class Program
         // stream.map(x -> x * 2)
 
         // C#:
-        List<int> doubled = numbers
-            .Select(x => x * 2)
-            .ToList();
+        List<int> doubled = numbers.Select(x => x * 2).ToList();
 
-        Console.WriteLine(
-            "Select * 2: " +
-            string.Join(", ", doubled));
+        Console.WriteLine("Select * 2: " + string.Join(", ", doubled));
 
         // OUTPUT:
         // Select * 2: 20, 40, 60, 80, 100
@@ -469,9 +439,7 @@ public class Program
         // stream.anyMatch(x -> x > 40)
 
         // C#:
-        Console.WriteLine(
-            "Any > 40: " +
-            numbers.Any(x => x > 40));
+        Console.WriteLine("Any > 40: " + numbers.Any(x => x > 40));
 
         // OUTPUT:
         // Any > 40: True
@@ -481,9 +449,7 @@ public class Program
         // stream.allMatch(x -> x > 0)
 
         // C#:
-        Console.WriteLine(
-            "All > 0: " +
-            numbers.All(x => x > 0));
+        Console.WriteLine("All > 0: " + numbers.All(x => x > 0));
 
         // OUTPUT:
         // All > 0: True
@@ -493,8 +459,7 @@ public class Program
         // stream.findFirst()
 
         // C#:
-        Console.WriteLine(
-            "First: " + numbers.First());
+        Console.WriteLine("First: " + numbers.First());
 
         // OUTPUT:
         // First: 10
@@ -504,8 +469,7 @@ public class Program
         // stream.count()
 
         // C#:
-        Console.WriteLine(
-            "Count: " + numbers.Count);
+        Console.WriteLine("Count: " + numbers.Count);
 
         // OUTPUT:
         // Count: 5
@@ -519,10 +483,7 @@ public class Program
         // User u = new User("Ali", 25, "Karachi");
 
         // C#:
-        User u = new User(
-            "Ali",
-            25,
-            "Karachi");
+        User u = new User("Ali", 25, "Karachi");
 
         Console.WriteLine(u.Name);
         Console.WriteLine(u.City);
@@ -540,8 +501,7 @@ public class Program
         // Map<String, Object> userMap = new HashMap<>();
 
         // C#:
-        Dictionary<string, object> userMap =
-            new Dictionary<string, object>();
+        Dictionary<string, object> userMap = new Dictionary<string, object>();
 
         // Java:
         // userMap.put("name", "Ali");
@@ -551,8 +511,7 @@ public class Program
         userMap["name"] = "Ali";
         userMap["age"] = 25;
 
-        Console.WriteLine(
-            $"{{name={userMap["name"]}, age={userMap["age"]}}}");
+        Console.WriteLine($"{{name={userMap["name"]}, age={userMap["age"]}}}");
 
         // OUTPUT:
         // {name=Ali, age=25}
@@ -562,14 +521,9 @@ public class Program
         // 13. OBJECT → DICTIONARY
         // ============================================================
 
-        Product product =
-            new Product(
-                "Laptop",
-                50000,
-                "Dell");
+        Product product = new Product("Laptop", 50000, "Dell");
 
-        Dictionary<string, object> productMap =
-            new Dictionary<string, object>();
+        Dictionary<string, object> productMap = new Dictionary<string, object>();
 
         productMap["name"] = product.Name;
         productMap["price"] = product.Price;
@@ -598,10 +552,10 @@ public class Program
 
         // C#:
         List<Product> cart = new List<Product>
-            {
-                new Product("Laptop", 50000, "Dell"),
-                new Product("Mouse", 1000, "Logitech")
-            };
+        {
+            new Product("Laptop", 50000, "Dell"),
+            new Product("Mouse", 1000, "Logitech")
+        };
 
         // Java:
         // int total = cart.stream()
@@ -618,14 +572,10 @@ public class Program
         //         .collect(Collectors.toList());
 
         // C#:
-        List<string> productNames = cart
-            .Select(item => item.Name)
-            .ToList();
+        List<string> productNames = cart.Select(item => item.Name).ToList();
 
         Console.WriteLine("Total: " + total);
-        Console.WriteLine(
-            "Names: " +
-            string.Join(", ", productNames));
+        Console.WriteLine("Names: " + string.Join(", ", productNames));
 
         // OUTPUT:
         // Total: 51000
@@ -637,10 +587,10 @@ public class Program
         // ============================================================
 
         List<User> users = new List<User>
-            {
-                new User("Ali", 25, "Karachi"),
-                new User("Sara", 22, "Lahore")
-            };
+        {
+            new User("Ali", 25, "Karachi"),
+            new User("Sara", 22, "Lahore")
+        };
 
         // Java:
         /*
@@ -651,12 +601,9 @@ public class Program
         */
 
         // C#:
-        List<User> filtered = users
-            .Where(user => user.Age > 23)
-            .ToList();
+        List<User> filtered = users.Where(user => user.Age > 23).ToList();
 
-        Console.WriteLine(
-            "Filtered users: " + filtered.Count);
+        Console.WriteLine("Filtered users: " + filtered.Count);
 
         // OUTPUT:
         // Filtered users: 1

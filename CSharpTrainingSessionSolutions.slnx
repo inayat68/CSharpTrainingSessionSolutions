@@ -44,6 +44,7 @@
   <Project Path="038_ArrayDemo/038_ArrayDemo.csproj" />
   <Project Path="039_ComplexCollectionDemo/039_ComplexCollectionDemo.csproj" />
   <Project Path="040_OperatorOverload/040_OperatorOverload.csproj" />
+  <Project Path="040_OperatorOverloading_ComplexNumber/040_OperatorOverloading_ComplexNumber.csproj" Id="a38548f3-3f85-4e6b-81df-eb2b3531cdcd" />
   <Project Path="041_ReadOnlyConstDemo/041_ReadOnlyConstDemo.csproj" />
   <Project Path="042_RefOutInParamDemo/042_RefOutInParamDemo.csproj" />
   <Project Path="043_StructNullableDemo/043_StructNullableDemo.csproj" />
