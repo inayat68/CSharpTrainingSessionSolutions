@@ -71,5 +71,6 @@
   <Project Path="061_03_CustomerManagement.Web/061_03_CustomerManagement.Web.csproj" Id="a9516e16-6b3a-4b0a-b6fc-cee9703ad8b6" />
   <Project Path="CustomerManagementWebApp/CustomerManagementWebApp.csproj" />
   <Project Path="OllamaDemo/OllamaDemo.csproj" />
+  <Project Path="SerilogWebApiDemo/SerilogWebApiDemo.csproj" />
   <Project Path="UserManagementApi/UserManagementApi.csproj" />
 </Solution>
