@@ -20,14 +20,34 @@ var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
 
-var dbPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "Data/app.db";
+var dbNameWithPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "Database/cs_users_db.db";
+//      OR
+var dbNameWithPath2 = Path.Combine(AppContext.BaseDirectory.Replace("\\bin\\Debug\\net8.0", ""), "Database", "cs_users_db.db");
+
 var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY") ?? "dev_key";
 var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "api";
 var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? "api_users";
 var frontend = Environment.GetEnvironmentVariable("FRONTEND_URL") ?? "http://localhost:5173";
 
-builder.Services.AddDbContext<AppDbContext>(o =>
-    o.UseSqlite($"Data Source={dbPath}"));
+//# SQLite provider
+//dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite($"Data Source={dbNameWithPath}"));
+
+//          OR
+
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "";
+builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite(connectionString));
+
+// ------------------------------------------------------------
+// Register SQL Server DbContext
+// ------------------------------------------------------------
+//# SQL Server provider
+//dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//    options.UseSqlServer(
+//        builder.Configuration.GetConnectionString("DefaultConnection")
+//    ));
 
 builder.Services.AddControllers();
 
@@ -133,7 +153,36 @@ if (isTraninging)
 app.Run();
 
 
+// DB Packages
+//# SQLite provider
+//dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+
+//# EF Core base package
+//dotnet add package Microsoft.EntityFrameworkCore
+
+//# SQL Server provider
+//dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+//# In-Memory database provider (mainly for testing)
+//dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+//# EF Core Design package (Migrations, Scaffolding, etc.)
+//dotnet add package Microsoft.EntityFrameworkCore.Design
+
+//# EF Core CLI Tools (migrations/database commands)
+//dotnet tool install --global dotnet-ef
+
+
+
+
+
+
 //Basics
+
+
+
+
+
 public class Chapters
 {
     //Chapter 01: Print / Display BigInteger / BigDecimal

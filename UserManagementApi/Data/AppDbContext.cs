@@ -5,9 +5,11 @@ namespace UserManagementApi.Data;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
+        string? connectionString = Database.GetConnectionString();
+
+        Console.WriteLine($"Connection String: {connectionString}");
     }
 
     public DbSet<User> Users => Set<User>();
