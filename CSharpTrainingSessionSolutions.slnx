@@ -16,7 +16,7 @@
   <Project Path="010_GarbageCollection/010_GarbageCollection.csproj" />
   <Project Path="011_DataTypes/011_DataTypes.csproj" />
   <Project Path="012_VerbatimAndTextStrings/012_VerbatimAndTextStrings.csproj" />
-  <Project Path="013_OperatorsDemo/013_OperatorsDemo.csproj" />
+  <Project Path="013_MathsOperatorsDemo/013_MathsOperatorsDemo.csproj" />
   <Project Path="014_VariableTypeInference/014_VariableTypeInference.csproj" />
   <Project Path="015_StringInterpolation/015_StringInterpolation.csproj" />
   <Project Path="016_LambdaExpressions/016_LambdaExpressions.csproj" />
