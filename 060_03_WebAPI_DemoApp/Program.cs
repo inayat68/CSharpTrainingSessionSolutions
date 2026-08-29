@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using WebApis.Models;
 
 namespace WebApis;
 
@@ -12,8 +13,7 @@ internal class Program
 
         using HttpClient client = new HttpClient();
 
-        client.BaseAddress = new Uri(
-            "https://jsonplaceholder.typicode.com/");
+        client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
 
         try
         {
@@ -25,8 +25,7 @@ internal class Program
             Console.WriteLine("1. GET Request");
             Console.WriteLine("--------------------------------");
 
-            HttpResponseMessage response =
-                await client.GetAsync("posts/1");
+            HttpResponseMessage response = await client.GetAsync("posts/1");
 
             Console.WriteLine(
                 $"Status: {(int)response.StatusCode} " +
@@ -44,8 +43,7 @@ internal class Program
             Console.WriteLine("2. GET as C# object");
             Console.WriteLine("--------------------------------");
 
-            Post? post =
-                await client.GetFromJsonAsync<Post>("posts/1");
+            Post? post = await client.GetFromJsonAsync<Post>("posts/1");
 
             if (post != null)
             {
@@ -70,17 +68,13 @@ internal class Program
                 Body = "This record was created from C#."
             };
 
-            HttpResponseMessage postResponse =
-                await client.PostAsJsonAsync(
-                    "posts",
-                    newPost);
+            HttpResponseMessage postResponse = await client.PostAsJsonAsync("posts", newPost);
 
             Console.WriteLine(
                 $"Status: {(int)postResponse.StatusCode} " +
                 $"{postResponse.StatusCode}");
 
-            string postResult =
-                await postResponse.Content.ReadAsStringAsync();
+            string postResult = await postResponse.Content.ReadAsStringAsync();
 
             Console.WriteLine(postResult);
         }
@@ -94,15 +88,4 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine("Completed.");
     }
-}
-
-public class Post
-{
-    public int UserId { get; set; }
-
-    public int Id { get; set; }
-
-    public string Title { get; set; } = string.Empty;
-
-    public string Body { get; set; } = string.Empty;
 }

@@ -221,7 +221,7 @@ public class Program
         //--------------------------------------------
         /* 
          *  git switch main
-            git merge dev
+            git merge development
 
          *  git checkout main
             git pull origin main
