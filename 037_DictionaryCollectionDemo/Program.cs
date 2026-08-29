@@ -188,9 +188,9 @@ internal class Program
         //     System.out.println("ID: " + id);
         // }
 
-        foreach (string name in employees.Values)
+        foreach (string n in employees.Values)
         {
-            Console.WriteLine($"Name: {name}");
+            Console.WriteLine($"Name: {n}");
         }
         // Java equivalent:
         // for (String name : employees.values())

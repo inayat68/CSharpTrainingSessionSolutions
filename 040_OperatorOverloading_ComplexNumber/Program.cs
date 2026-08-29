@@ -14,25 +14,20 @@ class ComplexNumber
     // + Operator
     public static ComplexNumber operator +(ComplexNumber a, ComplexNumber b)
     {
-        return new ComplexNumber(
-            a.Real + b.Real,
-            a.Imaginary + b.Imaginary);
+        return new ComplexNumber(a.Real + b.Real, a.Imaginary + b.Imaginary);
     }
 
     // - Operator
     public static ComplexNumber operator -(ComplexNumber a, ComplexNumber b)
     {
-        return new ComplexNumber(
-            a.Real - b.Real,
-            a.Imaginary - b.Imaginary);
+        return new ComplexNumber(a.Real - b.Real, a.Imaginary - b.Imaginary);
     }
 
     // * Operator
     public static ComplexNumber operator *(ComplexNumber a, ComplexNumber b)
     {
-        return new ComplexNumber(
-            a.Real * b.Real - a.Imaginary * b.Imaginary,
-            a.Real * b.Imaginary + a.Imaginary * b.Real);
+        return new ComplexNumber(a.Real * b.Real - a.Imaginary * b.Imaginary,
+                                    a.Real * b.Imaginary + a.Imaginary * b.Real);
     }
 
     // / Operator
@@ -40,9 +35,8 @@ class ComplexNumber
     {
         double denominator = b.Real * b.Real + b.Imaginary * b.Imaginary;
 
-        return new ComplexNumber(
-            (a.Real * b.Real + a.Imaginary * b.Imaginary) / denominator,
-            (a.Imaginary * b.Real - a.Real * b.Imaginary) / denominator);
+        return new ComplexNumber((a.Real * b.Real + a.Imaginary * b.Imaginary) / denominator,
+                                                 (a.Imaginary * b.Real - a.Real * b.Imaginary) / denominator);
     }
 
     public override string ToString()

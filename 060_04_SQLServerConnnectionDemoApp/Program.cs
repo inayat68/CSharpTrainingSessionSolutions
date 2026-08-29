@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Data;
 //dotnet add package microsoft.data.sqlclient --source https://api.nuget.org/v3/index.json
 
 namespace SqlServer;
@@ -19,7 +20,7 @@ internal class Program
             "Server=localhost,1433;" +              //Data Source / Address / Addr / Network Address
             "Database=BookCatalog;" +               //Initial Catalog
             "User Id=sa;Password=Strong@12345;" +   //UID,User,UserId   /   pwd     : pwd='Strong;123';
-             //"Integrated Security=True;" +        //Trusted_Connection
+                                                    //"Integrated Security=True;" +        //Trusted_Connection
             "TrustServerCertificate=True;";         //-
 
         var builder = new SqlConnectionStringBuilder
@@ -35,8 +36,7 @@ internal class Program
 
         try
         {
-            using SqlConnection connection =
-                new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(connectionString);
 
             Console.WriteLine();
             Console.WriteLine("Connecting to SQL Server...");
@@ -62,8 +62,7 @@ internal class Program
                 END
                 """;
 
-            using (SqlCommand command =
-                   new SqlCommand(createTableSql, connection))
+            using (SqlCommand command = new SqlCommand(createTableSql, connection))
             {
                 command.ExecuteNonQuery();
             }
@@ -88,31 +87,32 @@ internal class Program
                     @Salary
                 )
                 """;
-
-            using (SqlCommand command =
-                   new SqlCommand(insertSql, connection))
+            int rows = 0;
+            using (SqlCommand command = new SqlCommand(insertSql, connection))
             {
-                command.Parameters.AddWithValue(
-                    "@EmployeeName",
-                    "Ali");
+                command.Parameters.AddWithValue("@EmployeeName", "Sam");
+                command.Parameters.AddWithValue("@Department", "IT");
+                command.Parameters.AddWithValue("@Salary $", 15000);
 
-                command.Parameters.AddWithValue(
-                    "@Department",
-                    "IT");
+                rows = command.ExecuteNonQuery();
 
-                command.Parameters.AddWithValue(
-                    "@Salary",
-                    150000);
+                Console.WriteLine($"Row-1 inserted: {rows}");
 
-                int rows =
-                    command.ExecuteNonQuery();
+                //Immediate Window: Debug > Window > Immediate (Ctrl+Alt+I)
+                //command.Parameters["@EmployeeName"].Value = "Ahmed";
 
-                Console.WriteLine(
-                    $"Rows inserted: {rows}");
+                command.Parameters.AddWithValue("@EmployeeName", "Peter");
+                command.Parameters.AddWithValue("@Department", "Finance");
+                command.Parameters.AddWithValue("@Salary $", 11000);
+
+                rows = command.ExecuteNonQuery();
+
+                Console.WriteLine($"Row-2 inserted: {rows}");
+
             }
 
             // --------------------------------------------------
-            // SELECT
+            // SELECT Rows 1 by 1
             // --------------------------------------------------
 
             Console.WriteLine();
@@ -129,30 +129,57 @@ internal class Program
                 ORDER BY EmployeeId
                 """;
 
-            using (SqlCommand command =
-                   new SqlCommand(selectSql, connection))
-            using (SqlDataReader reader =
-                   command.ExecuteReader())
+            using (SqlCommand command = new SqlCommand(selectSql, connection))
             {
-                while (reader.Read())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    int id =
-                        reader.GetInt32(0);
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        string name = reader.GetString(1);
+                        string department = reader.GetString(2);
+                        decimal salary = reader.GetDecimal(3);
 
-                    string name =
-                        reader.GetString(1);
-
-                    string department =
-                        reader.GetString(2);
-
-                    decimal salary =
-                        reader.GetDecimal(3);
-
-                    Console.WriteLine(
-                        $"{id} | {name} | " +
-                        $"{department} | {salary:N2}");
+                        Console.WriteLine($"{id} | {name} | " + $"{department} | {salary:N2}");
+                    }
                 }
             }
+
+            //------------------------------------------------------------
+            // SELECT ALL Rows
+            //------------------------------------------------------------
+
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.CommandText = selectSql;
+                command.CommandType = CommandType.Text;
+                //command.CommandType = CommandType.StoredProcedure;
+                command.Connection = connection;
+
+                // Create DataAdapter using the existing SqlCommand
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    // Create DataTable
+                    DataTable table = new DataTable();
+
+                    // Fill DataTable from database
+                    adapter.Fill(table);
+
+                    // ----------------------------------------------------
+                    // Iterate through DataTable
+                    // ----------------------------------------------------
+                    foreach (DataRow row in table.Rows)
+                    {
+                        int id = Convert.ToInt32(row["EmployeeId"]);
+                        string? name = row["EmployeeName"].ToString();
+                        string? department = row["Department"].ToString();
+                        decimal salary = Convert.ToDecimal(row["Salary"]);
+
+                        Console.WriteLine($"{id} | {name} | {department} | {salary:N2}");
+                    }
+                }
+            }
+
         }
         catch (SqlException ex)
         {
