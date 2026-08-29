@@ -12,6 +12,38 @@ internal class Program
         Console.WriteLine("========================================");
 
         // --------------------------------------------------
+        // Read JSON Formatted String
+        // --------------------------------------------------
+
+        string jsonString = """
+                    {
+                        "fullName": "John Alex",
+                        "departmentName": "IT",
+                        "dateOfJoining": "2026-01-01",
+                        "skills": [
+                            "C#",
+                            ".NET",
+                            "SQL Server",
+                            "Git"
+                        ]
+                    }
+                    """;
+        var data = JsonSerializer.Deserialize<JsonElement>(jsonString);
+
+        Console.WriteLine($"Full Name: {data.GetProperty("fullName")}");
+        Console.WriteLine($"Department Name: {data.GetProperty("departmentName")}");
+        Console.WriteLine($"Date of Joining: {data.GetProperty("dateOfJoining")}");
+
+        Console.WriteLine("Skills:");
+
+        foreach (var skill in data.GetProperty("skills").EnumerateArray())
+        {
+            Console.WriteLine($"  - {skill}");
+        }
+
+        Console.ReadKey();
+
+        // --------------------------------------------------
         // Create multiple Employee objects
         // --------------------------------------------------
 
@@ -119,8 +151,7 @@ internal class Program
         Console.WriteLine("3. JSON → Objects");
         Console.WriteLine("--------------------------------");
 
-        List<Employee>? employeesFromJson =
-            JsonSerializer.Deserialize<List<Employee>>(jsonFromFile, options);
+        List<Employee>? employeesFromJson = JsonSerializer.Deserialize<List<Employee>>(jsonFromFile, options);
 
         if (employeesFromJson != null)
         {

@@ -90,23 +90,23 @@ internal class Program
             int rows = 0;
             using (SqlCommand command = new SqlCommand(insertSql, connection))
             {
+                //Row-1 Entry
                 command.Parameters.AddWithValue("@EmployeeName", "Sam");
                 command.Parameters.AddWithValue("@Department", "IT");
                 command.Parameters.AddWithValue("@Salary $", 15000);
 
                 rows = command.ExecuteNonQuery();
-
                 Console.WriteLine($"Row-1 inserted: {rows}");
 
                 //Immediate Window: Debug > Window > Immediate (Ctrl+Alt+I)
                 //command.Parameters["@EmployeeName"].Value = "Ahmed";
 
+                //Row-2 Entry
                 command.Parameters.AddWithValue("@EmployeeName", "Peter");
                 command.Parameters.AddWithValue("@Department", "Finance");
                 command.Parameters.AddWithValue("@Salary $", 11000);
 
                 rows = command.ExecuteNonQuery();
-
                 Console.WriteLine($"Row-2 inserted: {rows}");
 
             }
