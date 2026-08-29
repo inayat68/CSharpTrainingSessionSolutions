@@ -217,7 +217,17 @@ public class Program
 
     public static void Test1()
     {
+        // GIT Commands - Merge Development into Main
+        //--------------------------------------------
+        /* 
+         *  git switch main
+            git merge dev
 
+         *  git checkout main
+            git pull origin main
+            git merge development
+            git push origin main
+         */
     }
     public static void Test3()
     {
