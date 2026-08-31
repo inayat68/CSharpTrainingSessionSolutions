@@ -7,9 +7,5 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="..\..\..\Inayat.Rehman\Downloads\CustomerManagementDemo1\CustomerManagementDemo\CustomerManagement.Core\Customer.cs" Link="Customer.cs" />
-    <Compile Include="..\..\..\Inayat.Rehman\Downloads\CustomerManagementDemo1\CustomerManagementDemo\CustomerManagement.Core\CustomerService.cs" Link="CustomerService.cs" />
-  </ItemGroup>
 
 </Project>

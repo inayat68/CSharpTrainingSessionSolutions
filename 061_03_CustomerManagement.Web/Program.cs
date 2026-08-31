@@ -1,3 +1,5 @@
+using CustomerManagement.Core;
+
 namespace CustomerManagement.Web
 {
     public class Program
@@ -8,6 +10,8 @@ namespace CustomerManagement.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddSingleton<ConnectionStringSetup>();
 
             var app = builder.Build();
 

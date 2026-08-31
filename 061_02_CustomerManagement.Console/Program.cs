@@ -23,7 +23,7 @@ var configuration = new ConfigurationBuilder()
 // ------------------------------------------------------------
 //var connectionSettings = configuration.GetSection("ConnectionStrings").Get<ConnectionStringSettings>() ?? new ConnectionStringSettings();
 
-var connectionSettings = new ConnectionStringSettings
+var connectionSettings = new ConnectionStringSetup
 {
     ConnectionString    =
         configuration.GetConnectionString("DefaultConnection")

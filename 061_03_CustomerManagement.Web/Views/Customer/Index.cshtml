@@ -1,0 +1,35 @@
+@model List<CustomerManagement.Core.Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="text-center">
+    <h1 class="display-5">Customer Management</h1>
+    <p>Customers loaded from the shared Class Library.</p>
+</div>
+
+<div class="alert alert-secondary">
+    <strong>Configured Connection String:</strong>
+    @ViewBag.ConnectionString
+</div>
+
+<table class="table table-striped table-bordered mt-4">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.Name</td>
+                <td>@customer.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
