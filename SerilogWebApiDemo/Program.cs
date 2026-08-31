@@ -58,3 +58,46 @@ finally
 {
     Log.CloseAndFlush();
 }
+
+
+// =================================================================================================================
+// ASP.NET Core: Services vs Middleware vs Endpoints
+// =================================================================================================================
+//
+// Method / Code                    Type / Stage             Purpose
+// -----------------------------------------------------------------------------------------------------------------
+// builder.Services.AddSwaggerGen() Service Registration     Registers Swagger/OpenAPI generation services
+//
+// app.UseSwagger()                  Middleware              Serves the generated OpenAPI JSON document
+//
+// app.UseSwaggerUI()                Middleware              Provides the interactive Swagger UI
+//
+// app.UseSerilogRequestLogging()    Middleware              Logs HTTP requests and responses
+//
+// app.UseAuthentication()           Middleware              Authenticates the incoming request
+//
+// app.UseAuthorization()            Middleware              Checks authorization/permissions
+//
+// app.UseHttpsRedirection()          Middleware              Redirects HTTP requests to HTTPS
+//
+// app.MapControllers()              Endpoint Mapping        Maps controller actions to HTTP endpoints
+//
+// builder.Services.AddControllers() Service Registration     Registers MVC/Web API controller services
+//
+// =================================================================================================================
+//
+// EASY RULE:
+//
+// Add...()  → Register/configure services in Dependency Injection (DI)
+// Use...()  → Add middleware to the HTTP request pipeline
+// Map...()  → Map HTTP endpoints/routes
+//
+// =================================================================================================================
+//
+// Swagger:
+//
+// AddSwaggerGen() → Register Swagger services
+// UseSwagger()   → Serve Swagger/OpenAPI JSON
+// UseSwaggerUI() → Serve interactive Swagger web page
+//
+// =================================================================================================================
