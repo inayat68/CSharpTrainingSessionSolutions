@@ -50,8 +50,8 @@ class PremiumDiscount : IDiscount
 
 // ============================================================
 // L — Liskov Substitution Principle
-// Derived classes should be usable wherever the base class
-// is expected.
+// Derived class Object should be usable wherever an object of the base class is expected,
+// without breaking the correctness of the program.
 // ============================================================
 
 class Employee
@@ -69,6 +69,15 @@ class Developer : Employee
         Console.WriteLine("Developer is coding.");
     }
 }
+
+class TeamLead : Employee
+{
+    public override void Work()
+    {
+        Console.WriteLine("Team Lead is reviewing the code.");
+    }
+}
+
 
 // ============================================================
 // I — Interface Segregation Principle
@@ -145,8 +154,7 @@ public class Program
 
         // O — Open/Closed
         IDiscount discount = new PremiumDiscount();
-        Console.WriteLine("Discounted Price: " +
-            discount.Apply(100));
+        Console.WriteLine("Discounted Price: " + discount.Apply(100));
 
         // L — Liskov Substitution
         Employee employee = new Developer();

@@ -4,6 +4,14 @@ namespace VarMultipleVariables_27;
 
 public class Program
 {
+    /*
+     * In C#, var is used for implicit local variable typing. 
+     * The compiler determines the variable's type at compile time from the value on the right side.
+        
+        var age = 43;
+        age = 50;       // ✅
+        age = "Ali";    // ❌ Compile error
+     */
     public static void Main(string[] args)
     {
         Console.WriteLine("=== 27_VarMultipleVariables ===");

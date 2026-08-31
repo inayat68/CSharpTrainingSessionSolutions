@@ -70,8 +70,7 @@
 
             DateTime date = new DateTime(2026, 8, 12);
 
-            DateTime dateTime =
-                new DateTime(2026, 8, 12, 15, 30, 0);
+            DateTime dateTime = new DateTime(2026, 8, 12, 15, 30, 0);
 
             Console.WriteLine("Date: " +
                               date.ToString("yyyy-MM-dd"));
