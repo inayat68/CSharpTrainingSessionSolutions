@@ -8,26 +8,26 @@ public class CustomerController : Controller
 {
     private readonly CustomerService _customerService;
 
-    //private readonly ConnectionStringSettings _connectionSettings;
-    private readonly ConnectionStringSetup __connectionSettings;
+    private readonly ConnectionStringSettings _connectionSettings;
+    //private readonly ConnectionStringSetup __connectionSettings;
 
-    //public CustomerController(ConnectionStringSettings connectionSettings)
-    //{
-    //    _customerService = new CustomerService();
-    //    _connectionSettings = connectionSettings;
-    //}
-
-    public CustomerController(ConnectionStringSetup connectionSettings)
+    public CustomerController(ConnectionStringSettings connectionSettings)
     {
         _customerService = new CustomerService();
-        __connectionSettings = connectionSettings;
+        _connectionSettings = connectionSettings;
     }
+
+    //public CustomerController(ConnectionStringSetup connectionSettings)
+    //{
+    //    _customerService = new CustomerService();
+    //    __connectionSettings = connectionSettings;
+    //}
 
 
 
     public IActionResult Index()
     {
-        ViewBag.ConnectionString = __connectionSettings.ConnectionString;
+        ViewBag.ConnectionString = _connectionSettings.ConnectionString;
 
         var customers = _customerService.GetCustomers();
 

@@ -15,13 +15,13 @@ namespace CustomerManagement.Web
 
             // Read the shared ConnectionStringSettings class from
             // the ConnectionStrings section of appsettings.json.
-            //var connectionSettings = builder.Configuration.GetSection("ConnectionStrings").Get<ConnectionStringSettings>() ?? new ConnectionStringSettings();
+            var connectionSettings = builder.Configuration.GetSection("ConnectionStrings").Get<ConnectionStringSettings>() ?? new ConnectionStringSettings();
 
             // Register the settings object so it can be injected into
             // Controllers or other services later.
-            //builder.Services.AddSingleton(connectionSettings);
+            builder.Services.AddSingleton(connectionSettings);
 
-            builder.Services.AddSingleton<ConnectionStringSetup>();
+            ////builder.Services.AddSingleton<ConnectionStringSetup>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
