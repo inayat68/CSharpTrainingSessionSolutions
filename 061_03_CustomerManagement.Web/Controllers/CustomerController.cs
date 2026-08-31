@@ -7,18 +7,27 @@ namespace CustomerManagement.Web.Controllers;
 public class CustomerController : Controller
 {
     private readonly CustomerService _customerService;
-    private readonly ConnectionStringSetup _connectionSettings;
+
+    //private readonly ConnectionStringSettings _connectionSettings;
+    private readonly ConnectionStringSetup __connectionSettings;
+
+    //public CustomerController(ConnectionStringSettings connectionSettings)
+    //{
+    //    _customerService = new CustomerService();
+    //    _connectionSettings = connectionSettings;
+    //}
 
     public CustomerController(ConnectionStringSetup connectionSettings)
     {
         _customerService = new CustomerService();
-        _connectionSettings = connectionSettings;
+        __connectionSettings = connectionSettings;
     }
+
+
 
     public IActionResult Index()
     {
-        ViewBag.ConnectionString =
-            _connectionSettings.ConnectionString;
+        ViewBag.ConnectionString = __connectionSettings.ConnectionString;
 
         var customers = _customerService.GetCustomers();
 
