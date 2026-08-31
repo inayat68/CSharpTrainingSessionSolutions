@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using SerilogWebApiDemo.Models;
 
 namespace SerilogWebApiDemo.Controllers;
 
@@ -8,6 +9,7 @@ namespace SerilogWebApiDemo.Controllers;
 public class EmployeeController : ControllerBase
 {
     [HttpGet]
+    [ServiceFilter(typeof(LoggingFilter))]
     public IActionResult GetEmployees()
     {
         Log.Information("GetEmployees endpoint called");

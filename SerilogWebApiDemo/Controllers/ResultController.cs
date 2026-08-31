@@ -41,12 +41,19 @@ public class ResultController : ControllerBase
         };
         //return Content("Employee retrieved successfully.");
 
-        //return Ok();
-        return Ok("Employee retrieved successfully.");
 
         //Mouseover above OK() method and click OkObjectResult : ObjectResult : ActionResult, IStatusCodeActionResult, IActionResult
-        //OkObjectResult result = new OkObjectResult("Employee retrieved successfully.");
-        //return result;
+        //return Ok();
+        return Ok("Employee retrieved successfully.");
+    }
+
+    public override OkObjectResult Ok(object? value)
+    {
+        // Log BEFORE calling the original ControllerBase.Ok()
+        Console.WriteLine($"Ok() called with: {value}");
+
+        // Call the original implementation
+        return base.Ok(value);
     }
 
 
