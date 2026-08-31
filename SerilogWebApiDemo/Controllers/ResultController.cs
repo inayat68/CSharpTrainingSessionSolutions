@@ -30,9 +30,23 @@ public class ResultController : ControllerBase
     [HttpGet("ok")]
     public IActionResult GetOk()
     {
+        Log.Information("--------------------------------------------------");
         Log.Information("Returning OK with string only");
+        Log.Information("--------------------------------------------------");
 
+        //ContentResult Content(string content);
+        ContentResult resultContent = new ContentResult
+        {
+            Content = "Employee retrieved successfully."
+        };
+        //return Content("Employee retrieved successfully.");
+
+        //return Ok();
         return Ok("Employee retrieved successfully.");
+
+        //Mouseover above OK() method and click OkObjectResult : ObjectResult : ActionResult, IStatusCodeActionResult, IActionResult
+        //OkObjectResult result = new OkObjectResult("Employee retrieved successfully.");
+        //return result;
     }
 
 
@@ -312,3 +326,64 @@ public class ResultController : ControllerBase
 // │ Conflict()               │ 409          │ Request conflicts with existing data     │
 // │ StatusCode(500)          │ 500          │ Server error                             │
 // └──────────────────────────┴──────────────┴──────────────────────────────────────────┘
+
+// ==============================================================================================================================
+// Common ControllerBase Result Helpers
+// ==============================================================================================================================
+//
+// Helper Method                  Result Class                    HTTP     Purpose                              JavaScript fetch()
+//                                                                 Status                                      Result
+// ------------------------------------------------------------------------------------------------------------------------------
+// Ok()                            OkResult                        200      Success, no body                    response.status === 200
+//
+// Ok(value)                       OkObjectResult                  200      Success + data                     response.json()
+//
+// Created(uri, value)             CreatedResult                   201      Resource created                  response.status === 201
+//
+// CreatedAtAction(...)            CreatedAtActionResult           201      Created + action URL               response.status === 201
+//
+// CreatedAtRoute(...)             CreatedAtRouteResult            201      Created + route URL                response.status === 201
+//
+// NoContent()                     NoContentResult                 204      Success, no body                   response.status === 204
+//
+// BadRequest()                    BadRequestResult                400      Invalid request                    response.status === 400
+//
+// BadRequest(value)               BadRequestObjectResult          400      Error + details                    response.json()
+//
+// Unauthorized()                  UnauthorizedResult              401      Authentication failed              response.status === 401
+//
+// Forbid()                        ForbidResult                    403      Authenticated but not allowed      response.status === 403
+//
+// NotFound()                      NotFoundResult                  404      Resource not found                response.status === 404
+//
+// NotFound(value)                 NotFoundObjectResult            404      Not found + details               response.json()
+//
+// Conflict()                      ConflictResult                  409      Resource/state conflict           response.status === 409
+//
+// Conflict(value)                 ConflictObjectResult            409      Conflict + details                response.json()
+//
+// UnprocessableEntity()           UnprocessableEntityResult       422      Validation/semantic error         response.status === 422
+//
+// StatusCode(500)                 StatusCodeResult                Custom   Custom HTTP status                response.status === 500
+//
+// StatusCode(500, value)          ObjectResult                    Custom   Custom status + response body     response.json()
+//
+// Content(text)                   ContentResult                   200      Return text/content                response.text()
+//
+// Content(text, type)             ContentResult                   200      Text + specified content type     response.text()
+//
+// File(...)                       FileResult                      200      Return a file                     response.blob()
+//
+// PhysicalFile(...)               PhysicalFileResult              200      Return physical file              response.blob()
+//
+// VirtualFile(...)                VirtualFileResult               200      Return virtual file               response.blob()
+//
+// File(byte[], contentType)       FileContentResult               200      File from byte array              response.blob()
+//
+// File(Stream, contentType)       FileStreamResult                200      File from stream                  response.blob()
+//
+// Problem()                       ProblemDetails response         500      Standard API error                response.json()
+//
+// ValidationProblem()             ValidationProblemDetails        400      Validation errors                 response.json()
+//
+// ==============================================================================================================================

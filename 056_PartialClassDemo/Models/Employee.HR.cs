@@ -6,11 +6,14 @@ namespace _056_PartialClassDemo.Models
 {
     internal partial class Employee
     {
-        public decimal Salary { get; set; }
-        public void DisplaySalary()
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Department { get; set; } = string.Empty;
+        public void DisplayBasicInfo()
         {
-            Console.WriteLine($"Salary: {Salary:N2}");
+            Console.WriteLine($"ID: {Id}");
+            Console.WriteLine($"Name: {Name}"); 
+            Console.WriteLine($"Department: {Department}");
         }
-        public decimal CalculateAnnualSalary() { return Salary * 12; }
     }
 }
