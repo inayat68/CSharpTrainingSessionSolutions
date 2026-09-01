@@ -1051,7 +1051,7 @@ public class Program
         Console.WriteLine("42. JOIN - Employee with Department details");
         Console.WriteLine("--------------------------------------------");
 
-        List<Department> departments =
+        List<Department> departments5 =
         [
             new Department(1, "IT", "Information Technology"),
             new Department(2, "HR", "Human Resources"),
@@ -1061,7 +1061,7 @@ public class Program
 
         var employeeDepartments =
             employees.Join(
-                departments,
+                departments5,
                 employee => employee.Department,
                 department => department.Name,
                 (employee, department) => new
