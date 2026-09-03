@@ -65,7 +65,8 @@ public class Program
 
         var dbNameWithPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "Database/cs_users_db.db";
         //      OR
-        var dbNameWithPath2 = Path.Combine(AppContext.BaseDirectory.Replace("\\bin\\Debug\\net8.0", ""), "Database", "cs_users_db.db");
+        string dbPath = AppContext.BaseDirectory.Replace("\\bin\\Debug\\net8.0", "");
+        var dbNameWithPath2 = Path.Combine(dbPath, "Database", "cs_users_db.db");
 
         var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY") ?? "dev_key";
         var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "api";
