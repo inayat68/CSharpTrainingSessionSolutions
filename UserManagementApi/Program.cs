@@ -13,167 +13,185 @@ using UserManagementApi.Repositories;
 using UserManagementApi.Seed;
 using UserManagementApi.Services;
 
-namespace UserManagementApi
+namespace UserManagementApi;
+
+public class Program
 {
-    public class Program
+    record Employee(int Id, string Name, decimal Salary);
+    public static async Task Main(string[] args)
     {
-        record Employee(int Id, string Name, decimal Salary);
-        public static async Task Main(string[] args)
+        Console.WriteLine("Initializing a new instance of the WebApplicationBuilder");
+
+        var builder = WebApplication.CreateBuilder(args);
+
+        // ============================================================================
+        // .NET WEB API — builder has DEPENDENCY INJECTION Services
+        // ============================================================================
+        //
+        // Program.cs
+        //     │
+        //     ├── IConfiguration
+        //     └── Reads configuration/appsettings.json
+        //     |
+        //     |
+        //     ├── IWebHostEnvironment
+        //     │   └── Provides Root Path, Development/Production info
+        //     │
+        //     ↓
+        // IServiceCollection
+        //     │
+        //     ├── AddSingleton()
+        //     ├── AddScoped()
+        //     ├── AddTransient()
+        //     ├── AddDbContext()
+        //     ├── AddControllers()
+        //     └── AddAuthentication()
+        //     │
+        //     ↓
+        // IServiceProvider
+        //     │
+        //     ├── Controller
+        //     ├── Service
+        //     ├── Repository
+        //     ├── DbContext
+        //     ├── ILogger
+        //     └── Other dependencies
+        //
+        // ============================================================================
+        //
+
+        // Loading Envorinment Varaibles
+        Env.Load();
+
+        var dbNameWithPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "Database/cs_users_db.db";
+        //      OR
+        var dbNameWithPath2 = Path.Combine(AppContext.BaseDirectory.Replace("\\bin\\Debug\\net8.0", ""), "Database", "cs_users_db.db");
+
+        var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY") ?? "dev_key";
+        var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "api";
+        var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? "api_users";
+        var frontend = Environment.GetEnvironmentVariable("FRONTEND_URL") ?? "http://localhost:5173";
+
+        // Database Packages
+        // -----------------
+
+        //# EF Core base package
+        //dotnet add package Microsoft.EntityFrameworkCore
+
+        //# SQL Server provider
+        //dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+        //# In-Memory database provider (mainly for testing)
+        //dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+        //# EF Core Design package (Migrations, Scaffolding, etc.)
+        //dotnet add package Microsoft.EntityFrameworkCore.Design
+
+        //# EF Core CLI Tools (migrations/database commands)
+        //dotnet tool install --global dotnet-ef
+
+        //# SQLite provider
+        //dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+        builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite($"Data Source={dbNameWithPath}"));
+
+        //          OR
+
+        string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "";
+        builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite(connectionString));
+
+        // ------------------------------------------------------------
+        // Register SQL Server DbContext
+        // ------------------------------------------------------------
+        //# SQL Server provider
+        //dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+        //builder.Services.AddDbContext<AppDbContext>(options =>
+        //    options.UseSqlServer(
+        //        builder.Configuration.GetConnectionString("DefaultConnection")
+        //    ));
+
+        //builder.Services.AddDbContext<AppDbContext>(options =>
+        //{
+        //    options.UseSqlServer(
+        //        connectionString,
+        //        sqlOptions =>
+        //        {
+        //            sqlOptions.CommandTimeout(60);
+
+        //            sqlOptions.EnableRetryOnFailure(
+        //                maxRetryCount: 5,
+        //                maxRetryDelay: TimeSpan.FromSeconds(10),
+        //                errorNumbersToAdd: null);
+        //        });
+
+        //    if (builder.Environment.IsDevelopment())
+        //    {
+        //        options.EnableDetailedErrors();
+        //        options.EnableSensitiveDataLogging();
+        //    }
+        //});
+
+        // 1. Singleton: Create ONE instance for the entire application lifetime.
+        // The same DatabaseSettings object is reused everywhere.
+        //               AddSingleton<TService>(IServiceCollection)
+        builder.Services.AddSingleton<DatabaseSettings>();
+
+        //OR
+
+        // 2. Scoped: Create ONE instance per HTTP request (scope).
+        //    A new DbHelper is created for each web request.
+        builder.Services.AddScoped<UserService>();
+        builder.Services.AddScoped<RoleService>();
+        builder.Services.AddScoped<TaskService>();
+        builder.Services.AddScoped<JwtService>();
+        builder.Services.AddScoped<PasswordService>();
+
+        // 3. Transient
+        // A new instance every time the service is requested.
+        builder.Services.AddTransient<IUserRepository, UserRepository>();
+
+        // Register MVC services for Controllers + Views.
+        // This enables the application to use MVC Controllers and Razor Views.
+        builder.Services.AddControllers();
+
+        // Create Service for CORS (Cross Origin Resouce Sharing) Policy
+        builder.Services.AddCors(opt =>
         {
-            Console.WriteLine("Hello, World!");
+            opt.AddPolicy("frontend", p => p.WithOrigins(frontend).AllowAnyHeader().AllowAnyMethod());
+        });
 
-            var builder = WebApplication.CreateBuilder(args);
-
-            Env.Load();
-
-            // ============================================================================
-            // .NET WEB API — builder has DEPENDENCY INJECTION Services
-            // ============================================================================
-            //
-            // Program.cs
-            //     │
-            //     ├── IConfiguration
-            //     └── Reads configuration/appsettings.json
-            //     |
-            //     |
-            //     ├── IWebHostEnvironment
-            //     │   └── Provides Root Path, Development/Production info
-            //     │
-            //     ↓
-            // IServiceCollection
-            //     │
-            //     ├── AddSingleton()
-            //     ├── AddScoped()
-            //     ├── AddTransient()
-            //     ├── AddDbContext()
-            //     ├── AddControllers()
-            //     └── AddAuthentication()
-            //     │
-            //     ↓
-            // IServiceProvider
-            //     │
-            //     ├── Controller
-            //     ├── Service
-            //     ├── Repository
-            //     ├── DbContext
-            //     ├── ILogger
-            //     └── Other dependencies
-            //
-            // ============================================================================
-            //
-
-
-            var dbNameWithPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "Database/cs_users_db.db";
-            //      OR
-            var dbNameWithPath2 = Path.Combine(AppContext.BaseDirectory.Replace("\\bin\\Debug\\net8.0", ""), "Database", "cs_users_db.db");
-
-            var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY") ?? "dev_key";
-            var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "api";
-            var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? "api_users";
-            var frontend = Environment.GetEnvironmentVariable("FRONTEND_URL") ?? "http://localhost:5173";
-
-            //# SQLite provider
-            //dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-            builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite($"Data Source={dbNameWithPath}"));
-
-            //          OR
-
-            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "";
-            builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite(connectionString));
-
-            // ------------------------------------------------------------
-            // Register SQL Server DbContext
-            // ------------------------------------------------------------
-            //# SQL Server provider
-            //dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-
-            //builder.Services.AddDbContext<AppDbContext>(options =>
-            //    options.UseSqlServer(
-            //        builder.Configuration.GetConnectionString("DefaultConnection")
-            //    ));
-
-            //builder.Services.AddDbContext<AppDbContext>(options =>
-            //{
-            //    options.UseSqlServer(
-            //        connectionString,
-            //        sqlOptions =>
-            //        {
-            //            sqlOptions.CommandTimeout(60);
-
-            //            sqlOptions.EnableRetryOnFailure(
-            //                maxRetryCount: 5,
-            //                maxRetryDelay: TimeSpan.FromSeconds(10),
-            //                errorNumbersToAdd: null);
-            //        });
-
-            //    if (builder.Environment.IsDevelopment())
-            //    {
-            //        options.EnableDetailedErrors();
-            //        options.EnableSensitiveDataLogging();
-            //    }
-            //});
-
-            // 1. Singleton: Create ONE instance for the entire application lifetime.
-            // The same DatabaseSettings object is reused everywhere.
-            //               AddSingleton<TService>(IServiceCollection)
-            builder.Services.AddSingleton<DatabaseSettings>();
-
-            //OR
-
-            // 2. Scoped: Create ONE instance per HTTP request (scope).
-            //    A new DbHelper is created for each web request.
-            builder.Services.AddScoped<UserService>();
-            builder.Services.AddScoped<RoleService>();
-            builder.Services.AddScoped<TaskService>();
-            builder.Services.AddScoped<JwtService>();
-            builder.Services.AddScoped<PasswordService>();
-
-            // 3. Transient
-            // A new instance every time the service is requested.
-            builder.Services.AddTransient<IUserRepository, UserRepository>();
-
-            // Register MVC services for Controllers + Views.
-            // This enables the application to use MVC Controllers and Razor Views.
-            builder.Services.AddControllers();
-
-            // Create Service for CORS (Cross Origin Resouce Sharing) Policy
-            builder.Services.AddCors(opt =>
+        //Configures JWT Bearer Authentication in an ASP.NET Core Web API. Its job is to tell ASP.NET Core:
+        //"When a request contains a JWT token in the Authorization: Bearer ... header, validate that token using these rules."
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(o =>
+        {
+            o.TokenValidationParameters = new TokenValidationParameters
             {
-                opt.AddPolicy("frontend", p => p.WithOrigins(frontend).AllowAnyHeader().AllowAnyMethod());
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = issuer,
+                ValidAudience = audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+            };
+        });
+
+        // Register Swagger configuration
+        builder.Services.AddSwaggerGen(c =>
+        {
+            //Define the Bearer security scheme - To Enable Authorization on Swagger Page
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer"
             });
 
-            //Configures JWT Bearer Authentication in an ASP.NET Core Web API. Its job is to tell ASP.NET Core:
-            //"When a request contains a JWT token in the Authorization: Bearer ... header, validate that token using these rules."
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(o =>
+            // Tell Swagger that APIs require this security scheme
+            // Use the Bearer authentication definition that I created above for API requests.
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
-                o.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = issuer,
-                    ValidAudience = audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
-                };
-            });
-
-            // Register Swagger configuration
-            builder.Services.AddSwaggerGen(c =>
-            {
-                //Define the Bearer security scheme - To Enable Authorization on Swagger Page
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "bearer"
-                });
-
-                // Tell Swagger that APIs require this security scheme
-                // Use the Bearer authentication definition that I created above for API requests.
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
         {
             new OpenApiSecurityScheme
             {
@@ -185,75 +203,73 @@ namespace UserManagementApi
             },
             new string[] {}
         }
-                });
             });
+        });
 
-            builder.Services.AddProblemDetails();
+        builder.Services.AddProblemDetails();
 
-            //==================================================================================================
-            var app = builder.Build();
-            //==================================================================================================
+        //==================================================================================================
+        var app = builder.Build();
+        //==================================================================================================
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "UserManagementApi v1");
-                    c.RoutePrefix = "swagger";
-                });
-            }
-            else
-            {
-                app.UseExceptionHandler("/error");
-
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-                //It enables HSTS(HTTP Strict Transport Security) in your ASP.NET Core application.
-                //It tells the browser: "Always use HTTPS for this website. Don't use HTTP."
-            }
-
-            app.UseCors("frontend");
-
-            // Handle unhandled exceptions globally.
-            app.UseMiddleware<ExceptionMiddleware>();
-
-            // Log details of every incoming HTTP request.
-            app.UseMiddleware<RequestLoggingMiddleware>();
-
-            // Authenticate the user based on the JWT token.
-            app.UseAuthentication();
-
-            // Check whether the authenticated user is authorized to access the resource.
-            app.UseAuthorization();
-
-            // Map controller classes to HTTP endpoints.
-            app.MapControllers();   //Maps [HttpGet], [HttpPost], etc. in controller classes
-
-            app.MapGet("/hello", () => "Hello World");
-
-            app.MapPost("/api/employee", (Employee employee) =>
-            {
-                return $"Employee {employee.Id} - {employee.Name} - {employee.Salary}";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "UserManagementApi v1");
+                c.RoutePrefix = "swagger";
             });
-
-            // Create SQLite database tables when the application starts.
-            //
-            // CreateScope() creates a temporary DI scope.
-            // GetRequiredService<T>() asks DI to provide an instance of T.
-            // Here, DI creates DatabaseSettings and automatically supplies
-            // IConfiguration and IWebHostEnvironment to its constructor.
-            using (var scope = app.Services.CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                db.Database.EnsureCreated();
-                await DatabaseSeeder.SeedAsync(db);
-            }
-
-
-            app.Run();
         }
+        else
+        {
+            app.UseExceptionHandler("/error");
+
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+            //It enables HSTS(HTTP Strict Transport Security) in your ASP.NET Core application.
+            //It tells the browser: "Always use HTTPS for this website. Don't use HTTP."
+        }
+
+        app.UseCors("frontend");
+
+        // Handle unhandled exceptions globally.
+        app.UseMiddleware<ExceptionMiddleware>();
+
+        // Log details of every incoming HTTP request.
+        app.UseMiddleware<RequestLoggingMiddleware>();
+
+        // Authenticate the user based on the JWT token.
+        app.UseAuthentication();
+
+        // Check whether the authenticated user is authorized to access the resource.
+        app.UseAuthorization();
+
+        // Map controller classes to HTTP endpoints.
+        app.MapControllers();   //Maps [HttpGet], [HttpPost], etc. in controller classes
+
+        app.MapGet("/hello", () => "Hello World");
+
+        app.MapPost("/api/employee", (Employee employee) =>
+        {
+            return $"Employee {employee.Id} - {employee.Name} - {employee.Salary}";
+        });
+
+        // Create SQLite database tables when the application starts.
+        //
+        // CreateScope() creates a temporary DI scope.
+        // GetRequiredService<T>() asks DI to provide an instance of T.
+        // Here, DI creates DatabaseSettings and automatically supplies
+        // IConfiguration and IWebHostEnvironment to its constructor.
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            db.Database.EnsureCreated();
+            await DatabaseSeeder.SeedAsync(db);
+        }
+
+        app.Run();
     }
 }
 
@@ -322,23 +338,3 @@ namespace UserManagementApi
 // ============================================================================
 
 
-// Database Packages
-// -----------------
-
-//# SQLite provider
-//dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-
-//# EF Core base package
-//dotnet add package Microsoft.EntityFrameworkCore
-
-//# SQL Server provider
-//dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-
-//# In-Memory database provider (mainly for testing)
-//dotnet add package Microsoft.EntityFrameworkCore.InMemory
-
-//# EF Core Design package (Migrations, Scaffolding, etc.)
-//dotnet add package Microsoft.EntityFrameworkCore.Design
-
-//# EF Core CLI Tools (migrations/database commands)
-//dotnet tool install --global dotnet-ef
