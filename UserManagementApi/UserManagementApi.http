@@ -1,5 +1,5 @@
 @TestWebAPIApp_HostAddress = https://localhost:53954
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU3lzdGVtIEFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjEiLCJleHAiOjE3ODg0NTE4MDUsImlzcyI6IlVzZXJBcGkiLCJhdWQiOiJVc2VyQXBpVXNlcnMifQ.irphUTpEu8YbSqAbw5lfQUTXiE4_Kdl5w80nwELC318
 
 ### Simple Test API
 GET {{TestWebAPIApp_HostAddress}}/api/test
@@ -10,3 +10,25 @@ Accept: application/json
 GET {{TestWebAPIApp_HostAddress}}/api/admin/stats
 Accept: application/json
 Authorization: Bearer {{token}}
+
+### Secure API for Login
+POST {{TestWebAPIApp_HostAddress}}/api/auth/login
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "email": "admin@example.com",
+  "password": "Admin123"
+}
+
+### POST Employee JSON
+POST {{TestWebAPIApp_HostAddress}}/api/employee
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 10,
+  "name": "John",
+  "salary": 50000
+}

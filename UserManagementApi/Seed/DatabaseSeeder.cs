@@ -6,8 +6,7 @@ namespace UserManagementApi.Seed;
 
 public static class DatabaseSeeder
 {
-    public static async Task SeedAsync(
-        AppDbContext db)
+    public static async Task SeedAsync(AppDbContext db)
     {
         if (db.Roles.Any())
             return;

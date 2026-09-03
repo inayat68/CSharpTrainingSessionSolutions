@@ -18,8 +18,10 @@ public class TestController : ControllerBase
     public async Task<IActionResult> GetAsync()
     {
         var tasks = "This is sample test";
-           
-        return Ok(tasks);
+
+        throw new Exception("TEST ERROR");
+
+        //return Ok(tasks);
     }
 
 }
