@@ -61,6 +61,8 @@
   <Project Path="054_CommandLineArgumentDemo/054_CommandLineArgumentDemo.csproj" />
   <Project Path="055_ClassVSRecordApp/055_ClassVSRecordApp.csproj" Id="d695f1fd-22c8-45ef-92fc-7dd4dc94ed67" />
   <Project Path="056_PartialClassDemo/056_PartialClassDemo.csproj" Id="4581b960-bfca-4254-a2a5-55c903b845a5" />
+  <Project Path="057_IEnumerableDemo/057_IEnumerableDemo.csproj" Id="8cc1baba-e6fe-4aae-acca-40767e574eab" />
+  <Project Path="058_ModelAttributeDemo/058_ModelAttributeDemo.csproj" Id="cddfe44e-2fe5-41d9-b009-2867ee1d5b5d" />
   <Project Path="060_01_SequentialFilesDemoApp/060_01_SequentialFilesDemoApp.csproj" Id="14157d4a-93b2-484b-b3eb-e141815cc4c1" />
   <Project Path="060_02_FTP_API_DemoApp/060_02_FTP_API_DemoApp.csproj" Id="5657959b-c74c-42c3-b3ef-5fb71664e128" />
   <Project Path="060_03_WebAPI_DemoApp/060_03_WebAPI_DemoApp.csproj" Id="e0930de5-46e8-4741-9e99-258f198d1987" />

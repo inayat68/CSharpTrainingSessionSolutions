@@ -65,8 +65,8 @@ public class Program
 
         var dbNameWithPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "Database/cs_users_db.db";
         //      OR
-        string dbPath = AppContext.BaseDirectory.Replace("\\bin\\Debug\\net8.0", "");
-        var dbNameWithPath2 = Path.Combine(dbPath, "Database", "cs_users_db.db");
+        string dbPath2 = AppContext.BaseDirectory.Replace("\\bin\\Debug\\net8.0", "");
+        var dbNameWithPath2 = Path.Combine(dbPath2, "Database", "cs_users_db.db");
 
         var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY") ?? "dev_key";
         var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "api";
@@ -97,8 +97,8 @@ public class Program
 
         //          OR
 
-        string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "";
-        builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite(connectionString));
+        string connectionString2 = builder.Configuration.GetConnectionString("DefaultConnection") ?? "";
+        builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite(connectionString2));
 
         // ------------------------------------------------------------
         // Register SQL Server DbContext
@@ -114,7 +114,7 @@ public class Program
         //builder.Services.AddDbContext<AppDbContext>(options =>
         //{
         //    options.UseSqlServer(
-        //        connectionString,
+        //        connectionString2,
         //        sqlOptions =>
         //        {
         //            sqlOptions.CommandTimeout(60);
