@@ -155,6 +155,15 @@ public class Program
         // This enables the application to use MVC Controllers and Razor Views.
         builder.Services.AddControllers();
 
+        //// Disable automatic 400 response for invalid ModelState
+        //builder.Services
+        //.AddControllers()
+        //.ConfigureApiBehaviorOptions(options =>
+        //{
+        //    options.SuppressModelStateInvalidFilter = true;
+        //});
+
+
         // Create Service for CORS (Cross Origin Resouce Sharing) Policy
         builder.Services.AddCors(opt =>
         {
@@ -206,8 +215,6 @@ public class Program
                 }
             });
         });
-
-        builder.Services.AddProblemDetails();
 
         //==================================================================================================
         var app = builder.Build();

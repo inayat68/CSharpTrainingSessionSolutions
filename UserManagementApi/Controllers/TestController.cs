@@ -3,6 +3,7 @@ using Humanizer.Localisation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Channels;
+using UserManagementApi.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace UserManagementApi.Controllers;
@@ -64,8 +65,31 @@ public class TestController : ControllerBase
     // ============================================================
 
     [HttpPost]
-    public IActionResult Post()
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    public IActionResult Post([FromBody] Test t)
     {
+        // Put breakpoint here
+        var x = t.Name;
+
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState
+                .Where(x => x.Value != null && x.Value.Errors.Count > 0)
+                .ToDictionary(
+                    x => x.Key,
+                    x => x.Value!.Errors
+                        .Select(e => e.ErrorMessage)
+                        .ToArray()
+                );
+
+            return BadRequest(new
+            {
+                Message = "Validation failed",
+                Errors = errors
+            });
+        }
+
         return Ok("This is HTTP POST");
     }
 

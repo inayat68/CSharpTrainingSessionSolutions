@@ -32,3 +32,19 @@ Content-Type: application/json
   "name": "John",
   "salary": 50000
 }
+
+### POST Test JSON
+POST {{TestWebAPIApp_HostAddress}}/api/test
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "sdsdsd",
+  "email": "user@example.com",
+  "age": 100,
+  "phone": "606-505-3800",
+  "username": "abc123",
+  "password": "strings",
+  "confirmPassword": "stringst",
+  "lastLogin": "2026-09-05T09:23:49.364Z"
+}
