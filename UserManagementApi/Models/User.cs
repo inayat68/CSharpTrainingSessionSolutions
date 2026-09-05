@@ -10,10 +10,12 @@ public class User
 
     public int? ManagerId { get; set; }
 
-    [Required]
+    [Required, Display(Name = "Email Address")]
     public string Name { get; set; } = string.Empty;
 
     [Required]
+    [EmailAddress]
+    [Display(Name = "Email Address")]
     public string Email { get; set; } = string.Empty;
 
     [Required]
@@ -21,6 +23,9 @@ public class User
 
     public int? RoleId { get; set; }
 
+    [DataType(DataType.Date)]
+    [Display(Name = "Joining Date")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
     public DateTime JoiningDate { get; set; }
 
     public bool IsLoggedIn { get; set; }
