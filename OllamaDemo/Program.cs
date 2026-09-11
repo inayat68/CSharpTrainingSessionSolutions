@@ -439,12 +439,159 @@ after it add a line ""---------------------""
 after it add a line ""---------------------""
 ";
 
+string strPromptChatGPTPlus = @$"You are an expert SQL translation and verification assistant specializing in database migration, cross-database SQL compatibility, and SQL dialect conversion.
+
+You will receive the following inputs:
+
+1. Source Database
+
+   * Database Name:
+     {SourceDatabase}
+   * Official Documentation URL:
+     {SourceDatabaseDocUrl}
+
+2. Target Database
+   * Database Name:
+     {TargetDatabase}
+   * Official Documentation URL:
+     {TargetDatabaseDocUrl}
+
+3. Source SQL Query:
+   {StarMSourceQuery}
+
+4. Provided Target SQL Query:
+   {StarMTargetQuery}
+
+Your task is to independently translate and verify the SQL conversion while preserving the original query's intended functionality and semantics.
+
+Follow these instructions carefully:
+
+1. Analyze the Source SQL Query independently using the Source Database syntax and behavior.
+
+2. Use the provided Source Database documentation URL as the primary reference for understanding source-specific syntax, functions, operators, clauses, data types, and behavior.
+
+3. Independently translate the Source SQL Query into valid syntax for the Target Database.
+
+4. Use the provided Target Database documentation URL as the primary reference for determining valid Target Database syntax and behavior.
+
+5. Generate the ""AI Translated Query"" using ONLY:
+
+   * The Source SQL Query
+   * Source Database behavior
+   * Target Database behavior
+   * The provided database documentation
+
+6. While generating the AI Translated Query, DO NOT:
+
+   * Copy from the Provided Target SQL Query.
+   * Modify the Provided Target SQL Query.
+   * Use the Provided Target SQL Query as a translation reference.
+   * Allow the Provided Target SQL Query to influence your independent translation.
+
+7. Only after completing the AI Translated Query, compare it against the Provided Target SQL Query.
+
+8. Identify ONLY actual errors or incorrect differences in the Provided Target SQL Query.
+
+9. DO NOT report differences that are merely:
+
+   * Formatting differences
+   * Whitespace differences
+   * Capitalization differences
+   * Indentation differences
+   * Alias naming differences that do not affect behavior
+   * Stylistic differences
+   * Equivalent syntax
+   * Valid alternative syntax supported by the Target Database
+   * Different but functionally equivalent expressions
+
+10. Focus specifically on differences that may affect correctness or functional equivalence, including:
+
+    * SQL syntax
+    * Semantic behavior
+    * Database-specific functions
+    * Function arguments
+    * Operators
+    * Data types and casts
+    * NULL behavior
+    * String handling
+    * Date/time handling
+    * Numeric behavior
+    * Boolean behavior
+    * Clauses
+    * Joins
+    * Subqueries
+    * Expressions
+    * Aggregations
+    * Window functions
+    * Ordering
+    * Grouping
+    * Filtering
+    * Limits/pagination
+    * Identifier quoting
+    * Reserved keywords
+    * Database-specific SQL features
+    * Overall functional equivalence
+
+11. Do not mark something as incorrect merely because your AI Translated Query uses a different valid approach.
+
+12. If correctness depends on information that is not available, such as:
+
+    * Column data types
+    * Table definitions
+    * Constraints
+    * Database schema
+    * Session settings
+    * Compatibility settings
+    * Collation
+    * Runtime data
+    * Database version
+
+    clearly state that the issue is schema-dependent or environment-dependent instead of assuming it is incorrect.
+
+13. Determine whether the Provided Target SQL Query is functionally equivalent to the Source SQL Query.
+
+14. If the Provided Target SQL Query contains an error:
+
+    * Clearly identify the incorrect expression or clause.
+    * Explain why it is incorrect.
+    * Provide the correct syntax or expression for the Target Database.
+
+15. Do not invent errors. If the Provided Target SQL Query is valid and functionally equivalent, explicitly state that no incorrect differences were found.
+
+16. Preserve the intent and behavior of the Source SQL Query as closely as possible. The goal is functional equivalence, not textual similarity.
+
+Return the response EXACTLY in the following 6-section format and do not add any additional sections:
+
+1. Source Database Name
+   {SourceDatabase}
+
+2. Target Database Name
+   {TargetDatabase}
+
+3. Source SQL Query
+   {StarMSourceQuery}
+
+4. Provided Target SQL Query
+   {StarMTargetQuery}
+
+5. AI Translated Query
+
+   <Provide your independently generated Target Database SQL query here.>
+
+6. Incorrect Differences List
+   <List only genuine errors in the Provided Target SQL Query. For each error, include the incorrect part, explanation, and corrected Target Database syntax.>
+
+If there are no incorrect differences, write exactly:
+
+No incorrect differences found. The Provided Target SQL Query is functionally equivalent to the Source SQL Query.
+";
+
 //AI Models List
 
 //OllamaResponse answer = await client.AskAsync("deepseek-r1:7b", strPrompt);
 //OllamaResponse answer = await client.AskAsync("qwen2.5-coder:7b", strPrompt);
-//OllamaResponse answer = await client.AskAsync("distil-qwen3-4b-text2sql", strPrompt);
-OllamaResponse answer = await client.AskAsync("llama3.1:8b", strPrompt);
+OllamaResponse answer = await client.AskAsync("distil-qwen3-4b-text2sql", strPromptChatGPTPlus);
+//OllamaResponse answer = await client.AskAsync("llama3.1:8b", strPrompt);
 
 //+------------------------------------------------------------------+
 // Execution is paused here because of await method call above and   |
