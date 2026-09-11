@@ -14,25 +14,33 @@ namespace CustomerManagementWebApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // ============================================================================
+            // 🔧 SERVICES CONFIGURATION (Extension Methods in Infrastructure)
+            // ============================================================================
+
+            var services = builder.Services;
+            var configuration = builder.Configuration;
+            var environment = builder.Environment;
+
             // 1. Singleton: Create ONE instance for the entire application lifetime.
             //    The same DatabaseSettings object is reused everywhere.
-            builder.Services.AddSingleton<DatabaseSettings>();
+            services.AddSingleton<DatabaseSettings>();
 
             // Register the complete command-line argument array
-            builder.Services.AddSingleton<string[]>(args);
+            services.AddSingleton<string[]>(args);
             //builder.Services.AddSingleton(args);
 
             // 2. Scoped: Create ONE instance per HTTP request (scope).
             //    A new DbHelper is created for each web request.
-            builder.Services.AddScoped<DbHelper>();
+            services.AddScoped<DbHelper>();
 
             // 3. Transient
             // A new instance every time the service is requested.
-            builder.Services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<ICustomerService, CustomerService>();
 
             // Register MVC services for Controllers + Views.
             // This enables the application to use MVC Controllers and Razor Views.
-            builder.Services.AddControllersWithViews();
+            services.AddControllersWithViews();
 
 
             // Build the application and create the Dependency Injection (DI) container.

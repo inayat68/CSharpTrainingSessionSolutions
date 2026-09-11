@@ -3,10 +3,18 @@ using MyApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ============================================================================
+// 🔧 SERVICES CONFIGURATION (Extension Methods in Infrastructure)
+// ============================================================================
+
+var services = builder.Services;
+var configuration = builder.Configuration;
+var environment = builder.Environment;
+
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<MyAppContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+services.AddControllersWithViews();
+services.AddDbContext<MyAppContext>(options =>
+options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
 
 var app = builder.Build();
 
